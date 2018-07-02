@@ -40,40 +40,38 @@ cohorts.addEventListener('click', (event) => {
     for (const cohort of listCohort.getCohorts()) {  
       llenarlista("lista-cohorts",'elem-cohort',cohort,cohort.id)
       if(cohort.id === 'lim-2018-03-pre-core-pw'){
-        addEventToCohortElem(document.getElementById(cohort.id));
+        addEventToCohortElem(document.getElementById(cohort.id),cohort.id,listCohort);
       }
     };
   });
 });
 // agregar evento a un cohort(lim-2018-03-pre-core-pw)
-window.addEventToCohortElem = (elem) => {
+window.addEventToCohortElem = (elem,cohortId,listCohort) => {
   elem.addEventListener('click', (event) => {
     event.preventDefault();
     // funcion para recorrer json users(obtener nombres de estudiantes)
     ServiceApiRequest(urlUser,()=>{
       listUser.setUsers(getCohortsUsers());
       for (const student of listUser.getUsers()) {
-        llenarlista("list-students","",student,student.name)
-        addEventToUserElem(document.getElementById(student.id));
+        llenarlista("list-students","elem-student",student,student.name)
+        addEventToUserElem(document.getElementById(student.id),cohortId,listCohort,listUser);
       }
     })
   })
 };
 // agrgar evento a los elementos de la lista de estudiantes
-window.addEventToUserElem = (elem) => {
+window.addEventToUserElem = (elem,cohortId,listCohort,listUse) => {
   elem.addEventListener('click', () => {
     event.preventDefault();
     // funcion para obtener porcentaje total de estudiantes
     ServiceApiRequest(urlProgress,()=>{
-      const id = elem.getAttribute('id');
       const data = listProgress;
       listProgress.setProgres(getProgress());
       if (listProgress) {
         // console.log(data)
-        computeUsersStats(listUser.getUsers(),listProgress.getProgress(),listCohort.getCourses());
+        computeUsersStats(listUser.getUsers(),listProgress.getProgress(),listCohort.getCourses(cohortId));
         const elemnnto = document.getElementsByClassName("elimina");
-        if(elemnnto){
-      }
+        filterUsers(listUser.getUsers())
         const list = document.getElementById("progress");
         const a = document.createElement('a');
         const percent = document.createElement('span');
@@ -86,3 +84,25 @@ window.addEventToUserElem = (elem) => {
     })
   })
 };
+
+const filterInput = document.getElementById("my-search")
+const filterNames=()=>{
+  const filterValue = filterInput.value.toUpperCase()
+  let ulStudents = document.getElementById("list-students");
+  let liStudent  = ulStudents.querySelectorAll("li.elem-student");
+  for (item in listUser.users){
+     i = 0
+     if (i<liStudent.length){
+       i++
+     }
+     let m = liStudent[i].getElementById(student.id);
+     if (m.innerHTML.toUpperCase().indexOf(filterValue)>-1){
+      liStudent[i].style.display = "";
+     } else{
+      liStudent[i].style.display = "none";
+     }
+    
+     }
+}
+
+filterInput.addEventListener("keyup",filterNames(listUser.getUsers(),filterNames()))

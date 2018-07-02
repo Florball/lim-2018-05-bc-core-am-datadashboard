@@ -1,8 +1,9 @@
-// window.computeruserstate
 window.computeUsersStats = (users,progress,courses)=>{
     listProgress.setProgres(progress)
-
-    const listUsers= users.map(usersWithStats => {
+    for (var intro in courses) { 
+      listProgress.setIdCourse(intro)
+    }
+    const allUsers= users.map(usersWithStats => {
 
       usersWithStats.stats = {
         percent : listProgress.getIntroById(usersWithStats.id).percent,
@@ -12,8 +13,32 @@ window.computeUsersStats = (users,progress,courses)=>{
       };
       return usersWithStats
     });
-     console.log(listUsers)
-
-    return listUsers;
+    // sortUsers(allUsers,'completed','desc')
+    // console.log(allUsers)
+    console.log(allUsers)
+    return allUsers;
   };
-  
+// window.sortUsers=(users,orderBy,orderDireccion)=>{
+//   listUser.setUsers(users)
+//   switch(orderBy){
+//     case 'name':
+//     listUser.sortName(orderBy,orderDireccion)
+//     break
+//     case 'percent':
+//     listUser.sortStats(orderBy,orderDireccion)
+//     break
+//     case 'completed':
+//     listUser.exercisesExercises(orderBy,orderDireccion)
+//     break
+//   }
+//   // este ordena solo nombres
+//   listUser.sortName('name','asc')
+//   // este ordena stats
+//  // listUser.sortStats('percent','asc')   
+//   }
+window.filterUsers=(users,search)=>{
+  let filterBySearch = users.filter((user)=>{
+    return user.name === search
+  })
+  return filterBySearch;
+}

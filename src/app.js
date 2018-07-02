@@ -25,8 +25,14 @@ const listCohort = {
   getCohorts:()=>{
     return listCohort.cohorts
   },
-  getCourses:()=>{
-    return listCohort.coursesIndex
+  getCourses:(id)=>{
+    let cohortObj = {};
+    let courses = listCohort.cohorts.map(cohort => {
+      if(cohort.id == id){
+        cohortObj = cohort.coursesIndex
+      }
+    })
+    return cohortObj
   }
 }
 
@@ -38,10 +44,83 @@ const listUser = {
   getUsers:()=>{
     return listUser.users
   },
+  sortStats:(OrderBy,OrderDirection)=>{
+    listUser.users.sort(function (a, b) {
+      let labelOne = a.stats[OrderBy]
+      let labelTwo = b.stats[OrderBy]
+      let nombre1 = labelOne
+      let nombre2 = labelTwo
+      if(OrderDirection == 'asc'){
+        if (nombre1 > nombre2) {
+          return 1;
+        }
+        if (nombre1 <  nombre2) {
+          return -1;
+        } 
+      }
+      if(OrderDirection=='desc'){
+        if (nombre1 < nombre2) {
+          return 1;
+        }
+        if (nombre1 >  nombre2) {
+          return -1;
+        } 
+      }
+  });
+  },
+  // exercisesExercises:(OrderBy,OrderDirection)=>{
+  //   listUser.users.sort(function (a, b) {
+  //     let labelOne = a.stats.exercises[OrderBy]
+  //     let labelTwo = b.stats.exercises[OrderBy]
+  //     let nombre1 = labelOne
+  //     let nombre2 = labelTwo
+  //     if(OrderDirection == 'asc'){
+  //       if (nombre1 > nombre2) {
+  //         return 1;
+  //       }
+  //       if (nombre1 <  nombre2) {
+  //         return -1;
+  //       } 
+  //     }
+  //     if(OrderDirection=='desc'){
+  //       if (nombre1 < nombre2) {
+  //         return 1;
+  //       }
+  //       if (nombre1 >  nombre2) {
+  //         return -1;
+  //       } 
+  //     }
+  // });
+  // },
+  sortName:(OrderBy,OrderDirection)=>{
+     listUser.users.sort(function (a, b) {
+        let labelOne = a[OrderBy]
+        let labelTwo = b[OrderBy]
+        let nombre1 = labelOne.toLowerCase()
+        let nombre2 = labelTwo.toLowerCase()
+        if(OrderDirection == 'asc'){
+          if (nombre1 > nombre2) {
+            return 1;
+          }
+          if (nombre1 <  nombre2) {
+            return -1;
+          } 
+        }
+        if(OrderDirection=='desc'){
+          if (nombre1 < nombre2) {
+            return 1;
+          }
+          if (nombre1 >  nombre2) {
+            return -1;
+          } 
+        }
+    });
+  }
 }
 
 const listProgress = {
   progress : {},
+  idCourse:0,
   setProgres:(progress)=>{
     listProgress.progress = new Object(progress);
     
@@ -49,8 +128,11 @@ const listProgress = {
   getProgress:()=>{
     return listProgress.progress;
   },
+  setIdCourse:(id)=>{
+      listProgress.idCourse = id
+  },
   getIntroById:(id)=>{
-    if (typeof listProgress.progress[id].intro != "undefined"){
+    if (typeof listProgress.progress[id][listProgress.idCourse] !== "undefined"){
       return listProgress.progress[id].intro;
     }
     return {};
@@ -69,6 +151,15 @@ const listProgress = {
     }
     return listado
   },
+  countElement:(list,value)=>{
+    let count = 0
+    for (let item in list) {
+        if(list[item][value]){
+            count++
+        }
+    }
+    return count
+  },
   getExersicesById:(id)=>{
     const object= {}
     const objectExercises = listProgress.getParts(id).map(parts => {
@@ -76,23 +167,21 @@ const listProgress = {
       if(atribExercises){
         object.exercises = {
           total : Object.keys(atribExercises.exercises).length,
-          completed : atribExercises.completed,
-          percent: Math.round((atribExercises.completed/Object.keys(atribExercises.exercises).length)*100)
+          completed : listProgress.countElement(atribExercises.exercises,'completed'),
+          percent: (Math.round(listProgress.countElement(atribExercises.exercises,'completed')/Object.keys(atribExercises.exercises).length))*100
         };
         return parts.object
-      } 
-       
+      }     
     })
     return object.exercises
   },
-  // esta funcion es para el error que te dije pero dejala comentada por que no funciona bien
-  // isNaN:(valor)=>{
-  //     if(valor !== NaN){
-  //          return valor;
-  //     }else{
-  //         return 0;
-  //     }
-  // },
+  division:(numerador,denominador)=>{
+    let total = 0
+    if(numerador !== 0 && denominador !== 0){
+        total = numerador / denominador
+    }
+    return total
+  },
   getReadsById:(id)=>{
     let contadorTotalReads = 0;
     let contadorCompletedReads = 0;
@@ -117,26 +206,25 @@ const listProgress = {
     let totalQuizzes = 0;
     let completedQuizzes = 0;
     let scoreSumQuizzes = 0;
-    const parts = listProgress.getParts(id);
-    for (let elemOfParts in parts) {
-        for (let atribOfPart in parts[elemOfParts]) {
-            if (parts[elemOfParts][atribOfPart].type === "quiz") {
-              totalQuizzes++;
-              if (parts[elemOfParts][atribOfPart].completed === 1){
-                completedQuizzes++;               
-                } 
-                if((parts[elemOfParts][atribOfPart]).hasOwnProperty("score")){
-                  scoreSumQuizzes += parts[elemOfParts][atribOfPart].score;
-                }
-            }
-         }
-    }     
+    const parts = listProgress.getParts(id).map(part => {
+      for (let atribOfPart in part) {
+        if(part[atribOfPart].type ==='quiz'){
+          totalQuizzes++;
+          if (part[atribOfPart].completed === 1){
+            completedQuizzes++;               
+            } 
+            if((part[atribOfPart]).hasOwnProperty("score")){
+              scoreSumQuizzes += part[atribOfPart].score;
+            }       
+        }
+      }
+    })    
     const quizzes = new Object ();
     quizzes.total = totalQuizzes;
     quizzes.completed = completedQuizzes;
-    quizzes.percent = Math.round((completedQuizzes/totalQuizzes)*100);
+    quizzes.percent = Math.round( listProgress.division(completedQuizzes,totalQuizzes)*100);
     quizzes.scoreSum = scoreSumQuizzes;
-    quizzes.scoreAvg = Math.round(scoreSumQuizzes/completedQuizzes);
-    return quizzes;
+    quizzes.scoreAvg = Math.round(listProgress.division(scoreSumQuizzes,completedQuizzes));
+   return quizzes;
   }
 }
