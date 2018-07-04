@@ -21,13 +21,14 @@ Tambien usamos trello para tener un formato digital de nuestras tareas.
 
 Por lo que en este primer sprint hemos logrado tener un prototipo en papel, ademas acceder a la página por medio de un logging y obtener los datos del json y mostrar los cohorts en pantalla.
 
-![login](https://preview.ibb.co/kx9HGd/Captura.png" )
+![login](https://preview.ibb.co/kx9HGd/Captura.png)
 
 ### Sprint 2
 
 ## Desarrollo del producto final
 
-El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad.
+El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con una mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad.
+[Prototipo con Figma](https://www.figma.com/proto/NAmxkjy8ZBlJx8TB5BwkT5Im/laboratoria?node-id=75%3A0&scaling=scale-down)
 
 ### Experiencia del usuario
 
