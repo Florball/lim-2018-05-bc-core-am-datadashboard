@@ -2,11 +2,11 @@ const urlCohort = "../data/cohorts.json"
 const urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json"
 const urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json"
 //funcion para obtener datos json
-const ServiceApiRequest =(url,callback)=>{
+const ServiceApiRequest = (url, callback) => {
   const xhr = new XMLHttpRequest();
-     xhr.open("GET", url);
-     xhr.onload = callback;
-     xhr.send(); 
+  xhr.open("GET", url);
+  xhr.onload = callback;
+  xhr.send();
 }
 
 const getCohortsUsers = () => {
@@ -14,54 +14,54 @@ const getCohortsUsers = () => {
 }
 const getProgress = () => {
   let data3 = JSON.parse(event.target.responseText);
-     return data3
+  return data3
 }
 
 const listCohort = {
-  cohorts :{},
-  setCohort:(cohorts)=>{
+  cohorts: {},
+  setCohort: (cohorts) => {
     listCohort.cohorts = cohorts
   },
-  getCohorts:()=>{
+  getCohorts: () => {
     return listCohort.cohorts
   },
-  getCourses:()=>{
+  getCourses: () => {
     return listCohort.coursesIndex
   }
 }
 
 const listUser = {
-  users : {},
-  setUsers:(list)=>{
+  users: {},
+  setUsers: (list) => {
     listUser.users = list
   },
-  getUsers:()=>{
+  getUsers: () => {
     return listUser.users
   },
 }
 
 const listProgress = {
-  progress : {},
-  setProgres:(progress)=>{
+  progress: {},
+  setProgres: (progress) => {
     listProgress.progress = new Object(progress);
-    
+
   },
-  getProgress:()=>{
+  getProgress: () => {
     return listProgress.progress;
   },
-  getIntroById:(id)=>{
-    if (typeof listProgress.progress[id].intro != "undefined"){
+  getIntroById: (id) => {
+    if (typeof listProgress.progress[id].intro != "undefined") {
       return listProgress.progress[id].intro;
     }
     return {};
   },
-  getParts:(id)=>{
+  getParts: (id) => {
     const intro = listProgress.getIntroById(id)
     const listado = [];
-    if(intro){
-      if(intro.units){
-        for (var i in intro.units) {          
-          if(intro.units[i].parts){
+    if (intro) {
+      if (intro.units) {
+        for (var i in intro.units) {
+          if (intro.units[i].parts) {
             listado.push(intro.units[i].parts)
           }
         }
@@ -69,19 +69,19 @@ const listProgress = {
     }
     return listado
   },
-  getExersicesById:(id)=>{
-    const object= {}
+  getExersicesById: (id) => {
+    const object = {}
     const objectExercises = listProgress.getParts(id).map(parts => {
-    const atribExercises = parts['06-exercises'];
-      if(atribExercises){
+      const atribExercises = parts['06-exercises'];
+      if (atribExercises) {
         object.exercises = {
-          total : Object.keys(atribExercises.exercises).length,
-          completed : atribExercises.completed,
-          percent: Math.round((atribExercises.completed/Object.keys(atribExercises.exercises).length)*100)
+          total: Object.keys(atribExercises.exercises).length,
+          completed: atribExercises.completed,
+          percent: Math.round((atribExercises.completed / Object.keys(atribExercises.exercises).length) * 100)
         };
         return parts.object
-      } 
-       
+      }
+
     })
     return object.exercises
   },
@@ -93,50 +93,50 @@ const listProgress = {
   //         return 0;
   //     }
   // },
-  getReadsById:(id)=>{
+  getReadsById: (id) => {
     let contadorTotalReads = 0;
     let contadorCompletedReads = 0;
     const parts = listProgress.getParts(id);
     for (let elemOfParts in parts) {
-        for (let atribOfPart in parts[elemOfParts]) {
-            if (parts[elemOfParts][atribOfPart].type === "read") {
-              contadorTotalReads++;
-              if (parts[elemOfParts][atribOfPart].completed === 1){
-                contadorCompletedReads++;
-              }
-            }
-         }
-    }  
-    const reads = new Object ();
+      for (let atribOfPart in parts[elemOfParts]) {
+        if (parts[elemOfParts][atribOfPart].type === "read") {
+          contadorTotalReads++;
+          if (parts[elemOfParts][atribOfPart].completed === 1) {
+            contadorCompletedReads++;
+          }
+        }
+      }
+    }
+    const reads = new Object();
     reads.total = contadorTotalReads;
     reads.completed = contadorCompletedReads;
-    reads.percent = Math.round((contadorCompletedReads/contadorTotalReads)*100)
-  return reads;
+    reads.percent = Math.round((contadorCompletedReads / contadorTotalReads) * 100)
+    return reads;
   },
-  getQuizzesById:(id)=>{
+  getQuizzesById: (id) => {
     let totalQuizzes = 0;
     let completedQuizzes = 0;
     let scoreSumQuizzes = 0;
     const parts = listProgress.getParts(id);
     for (let elemOfParts in parts) {
-        for (let atribOfPart in parts[elemOfParts]) {
-            if (parts[elemOfParts][atribOfPart].type === "quiz") {
-              totalQuizzes++;
-              if (parts[elemOfParts][atribOfPart].completed === 1){
-                completedQuizzes++;               
-                } 
-                if((parts[elemOfParts][atribOfPart]).hasOwnProperty("score")){
-                  scoreSumQuizzes += parts[elemOfParts][atribOfPart].score;
-                }
-            }
-         }
-    }     
-    const quizzes = new Object ();
+      for (let atribOfPart in parts[elemOfParts]) {
+        if (parts[elemOfParts][atribOfPart].type === "quiz") {
+          totalQuizzes++;
+          if (parts[elemOfParts][atribOfPart].completed === 1) {
+            completedQuizzes++;
+          }
+          if ((parts[elemOfParts][atribOfPart]).hasOwnProperty("score")) {
+            scoreSumQuizzes += parts[elemOfParts][atribOfPart].score;
+          }
+        }
+      }
+    }
+    const quizzes = new Object();
     quizzes.total = totalQuizzes;
     quizzes.completed = completedQuizzes;
-    quizzes.percent = Math.round((completedQuizzes/totalQuizzes)*100);
+    quizzes.percent = Math.round((completedQuizzes / totalQuizzes) * 100);
     quizzes.scoreSum = scoreSumQuizzes;
-    quizzes.scoreAvg = Math.round(scoreSumQuizzes/completedQuizzes);
+    quizzes.scoreAvg = Math.round(scoreSumQuizzes / completedQuizzes);
     return quizzes;
   }
 }

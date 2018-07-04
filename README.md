@@ -7,29 +7,32 @@ especificamente para el uso de Laboratoria y tiene como objetivo ser una herrami
 ayuda para observar la data de progreso de las estudiantes de manera que se pueda 
 identificar patrones y correlaciones.
 
-## Product Backlog
+## Usamos un Product Backlog
 
 ### Sprint 1
 
-Para el desarrollo del primer sprint realizamos un sprint plan en modelo Kanban para determinar las tareas 
-ha realizar en este periodo.
+Para el desarrollo del primer sprint realizamos un sprint planing en modelo Kanban para determinar las tareas ha realizar en este periodo.
 
 ![Tablero Kanban](https://preview.ibb.co/i1bqeo/kanban.jpg)
 
-Tambien usamos trello para tener un formato digital de nuestras tareas
+Tambien usamos trello para tener un formato digital de nuestras tareas.
 
-![Tablero Trello](https://preview.ibb.co/fNnfeo/trello.png)
+![Tablero Trello](https://preview.ibb.co/fYLk2J/ejfhx.png)
 
-Por lo que en este primer sprint hemos logrado tener prototippo en papel, ademas acceder a la pagina por medio de un logging y obtener los datos del json y mostrar los cohorts en pantalla
+Por lo que en este primer sprint hemos logrado tener un prototipo en papel, ademas acceder a la página por medio de un logging y obtener los datos del json y mostrar los cohorts en pantalla.
+
+![login](https://preview.ibb.co/kx9HGd/Captura.png" )
 
 ### Sprint 2
 
 ## Desarrollo del producto final
 
+El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad.
+
 ### Experiencia del usuario
 
 El usuario final del proyecto es la Training manager de Laboratoria, que es la encargada 
-de revisar las incidencias y el proceso de aprendizaje de las estudiantes
+de revisar las incidencias y el proceso de aprendizaje de las estudiantes.
 
 #### Investigación de Usuario
 
