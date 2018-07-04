@@ -82,19 +82,19 @@ desarrollo de los ejercicios, por lo tanto hemos observado que lo primordial par
 ![Entrevista a Usuario](https://image.ibb.co/drmZey/Capturaentrevista1.png)
 ![Entrevista a Usuario](https://image.ibb.co/dgDxzy/entrevista2.png)
 ![Entrevista a Usuario](https://image.ibb.co/iqLhXJ/entrevista3.png) 
+### Sprint 3
+
 ## Instrucciones de acceso
 
 Para acceder a la página no se requiere de la descarga de una aplicación ni de la instalación 
 de algun software externo.
-Para acceder a la página se debe ingresar a la página Laboratoria (), en la página aparecerá 
+Para acceder a la página se debe ingresar a la página [Laboratoria](https://florball.github.io/lim-2018-05-bc-core-am-datadashboard/src), en la página aparecerá 
 un logging, en ella se debe acceder con el usuario y contraseña.
 Luego aparecera la opcion para ingresar a los cohorts.
 
-## Contacto
-
-### Sprint 3
-
 Finalmente la vista de página la página
+
+## Contacto
 
 Dalia Escudero
 Flor Ballinas
