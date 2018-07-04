@@ -37,11 +37,11 @@ modificará o mejorará en un prototipo de alta fidelidad.
 
 ![Prototipo papel logging y sedes](https://preview.ibb.co/jHNrkT/maq1.jpg)
 
-![Prototipo papel cohorts y data general](<https://preview.ibb.co/jhFNs8/maq2.jpg)
+![Prototipo papel cohorts y data general](https://preview.ibb.co/jhFNs8/maq2.jpg)
 
-![Prototipo papel Estudiantes](<https://preview.ibb.co/msWgKo/maq3.jpg)
+![Prototipo papel Estudiantes](https://preview.ibb.co/msWgKo/maq3.jpg)
 
-###Después del prototipo de papel se hizo cambios para mejorar el diseño
+### Después del prototipo de papel se hizo cambios para mejorar el diseño
 
 ![Diseño ventana 1](https://preview.ibb.co/fQiYX8/parte_1.jpg)
 
@@ -53,17 +53,17 @@ modificará o mejorará en un prototipo de alta fidelidad.
 
 ![Diseño ventana 5](https://preview.ibb.co/gmfcQT/parte_5.jpg)
 
-#### Prototipo de alta fidelidad
+### Prototipo de alta fidelidad
 
 El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con una mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad, con los cambios que se querían lograr:
 [Prototipo con Figma](https://www.figma.com/proto/NAmxkjy8ZBlJx8TB5BwkT5Im/laboratoria?node-id=75%3A0&scaling=scale-down)
 
-### Experiencia del usuario
+## -Experiencia del usuario
 
 El usuario final del proyecto es la Training manager de Laboratoria, que es la encargada 
 de revisar las incidencias y el proceso de aprendizaje de las estudiantes.
 
-#### Entrevista e investigación de Usuario:
+### Entrevista e investigación de Usuario:
 
 Segun la data que hemos obtenido respecto al objetivo del usuario, se ha observado que lo 
 mas importante para ella es ver el progreso de las estudiantes, principalmente en el 
