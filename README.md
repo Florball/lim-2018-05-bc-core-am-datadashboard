@@ -39,24 +39,22 @@ de revisar las incidencias y el proceso de aprendizaje de las estudiantes.
 
 Segun la data que hemos obtenido respecto al objetivo del usuario, se ha observado que lo 
 mas importante para ella es ver el progreso de las estudiantes, principalmente en el 
-desarrollo de los ejercicios hemos observado que lo principal para la usuaria es:
+desarrollo de los ejercicios, por lo tanto hemos observado que lo primordial para la usuaria final es:
 
-- Tener acceso facil y rapido(que no se tarde en cargar la pagina); por que segun su 
-experiencia, ella cuenta con un fromato para ver el progreso pero es muy lento y no es muy 
-eficiente para los objetivos que se quiere lograr.
-- Poder tener acceso a información general y desagregada; es decir que pueda ver un cuadro 
-general de cada bootcamp, por turnos y squads.
+- Tener un acceso a la página fácil y rápido (que no tarde en cargar la informacion en la página); porque según la experiencia actual del usuario, el formato de la página excel que se encuentra usando para ver el progreso de las alumnas es muy lento y no es eficiente para los objetivos que se quiere lograr.
+
+- Poder tener acceso a información general y desagregada; es decir que pueda ver un cuadro general de cada bootcamp, por turnos y squads.
+
 - Poder hacer comparaciones, tendencias y correlaciones.
 
-La informacion mas relevante para el usuario son los promedios, porcentajes, completitud 
-general, principalmente la de los ejercicios, ya que estos se realizan por las estudiantes 
-sin ninguna guia.
+- La informacion mas relevante para el usuario son los promedios, porcentajes, completitud general, principalmente la de los ejercicios, ya que estos se realizan por las estudiantes sin ninguna guia.
 
-La información es revisada por lo general al final de cada proyecto para ver resultados 
-finales y con menos frecuencia al final de cada sprint.
+- La información es revisada por lo general al final de cada proyecto para ver resultados finales y con menos frecuencia al final de cada sprint.
 
 #### Entrevista al Usuario
-Pendiente
+![Entrevista a Usuario](https://image.ibb.co/drmZey/Capturaentrevista1.png)
+![Entrevista a Usuario](https://image.ibb.co/dgDxzy/entrevista2.png)
+![Entrevista a Usuario](https://image.ibb.co/iqLhXJ/entrevista3.png) 
 
 ### Diseño de Interfaz
 
