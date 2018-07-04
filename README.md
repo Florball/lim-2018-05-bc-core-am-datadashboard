@@ -25,9 +25,37 @@ Por lo que en este primer sprint hemos logrado tener un prototipo en papel, adem
 
 ### Sprint 2
 
-## Desarrollo del producto final
+## Desarrollo del producto:
 
-El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con una mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad.
+## -Diseño de Interfaz
+
+### Prototipo en papel
+
+Respecto a la información recaudada en cuanto a lo que el usuario espera del proyecto se 
+ha realizado prototipos en papel que posteriormente con la entrevista al usuario se 
+modificará o mejorará en un prototipo de alta fidelidad.
+
+![Prototipo papel logging y sedes](https://preview.ibb.co/jHNrkT/maq1.jpg)
+
+![Prototipo papel cohorts y data general](<https://preview.ibb.co/jhFNs8/maq2.jpg)
+
+![Prototipo papel Estudiantes](<https://preview.ibb.co/msWgKo/maq3.jpg)
+
+###Después del prototipo de papel se hizo cambios para mejorar el diseño
+
+![Diseño ventana 1](https://preview.ibb.co/fQiYX8/parte_1.jpg)
+
+![Diseño ventana 2](https://preview.ibb.co/fEh2s8/parte_2.jpg)
+
+![Diseño ventana 3](https://preview.ibb.co/fKiQC8/parte_3.jpg)
+
+![Diseño ventana 4](https://preview.ibb.co/fAmOzo/parte_4.jpg)
+
+![Diseño ventana 5](https://preview.ibb.co/gmfcQT/parte_5.jpg)
+
+#### Prototipo de alta fidelidad
+
+El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con una mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad, con los cambios que se querían lograr:
 [Prototipo con Figma](https://www.figma.com/proto/NAmxkjy8ZBlJx8TB5BwkT5Im/laboratoria?node-id=75%3A0&scaling=scale-down)
 
 ### Experiencia del usuario
@@ -35,7 +63,7 @@ El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagi
 El usuario final del proyecto es la Training manager de Laboratoria, que es la encargada 
 de revisar las incidencias y el proceso de aprendizaje de las estudiantes.
 
-#### Investigación de Usuario
+#### Entrevista e investigación de Usuario:
 
 Segun la data que hemos obtenido respecto al objetivo del usuario, se ha observado que lo 
 mas importante para ella es ver el progreso de las estudiantes, principalmente en el 
@@ -51,41 +79,9 @@ desarrollo de los ejercicios, por lo tanto hemos observado que lo primordial par
 
 - La información es revisada por lo general al final de cada proyecto para ver resultados finales y con menos frecuencia al final de cada sprint.
 
-#### Entrevista al Usuario
 ![Entrevista a Usuario](https://image.ibb.co/drmZey/Capturaentrevista1.png)
 ![Entrevista a Usuario](https://image.ibb.co/dgDxzy/entrevista2.png)
 ![Entrevista a Usuario](https://image.ibb.co/iqLhXJ/entrevista3.png) 
-
-### Diseño de Interfaz
-
-#### Prototipo en papel
-
-Respecto a la información recaudada en cuanto a lo que el usuario espera del proyecto se 
-ha realizouado prototipos en papel que posteriormente con la entrevista al usuario se 
-modificara o mejorara en un prototipo de alta fidelidad.
-
-![Prototipo papel logging y sedes](https://preview.ibb.co/jHNrkT/maq1.jpg)
-
-![Prototipo papel cohorts y data general](<https://preview.ibb.co/jhFNs8/maq2.jpg)
-
-![Prototipo papel Estudiantes](<https://preview.ibb.co/msWgKo/maq3.jpg)
-
-Después del prototipo de papel se hizo cambios para mejorar el diseño.
-
-![Diseño ventana 1](https://preview.ibb.co/fQiYX8/parte_1.jpg)
-
-![Diseño ventana 2](https://preview.ibb.co/fEh2s8/parte_2.jpg)
-
-![Diseño ventana 3](https://preview.ibb.co/fKiQC8/parte_3.jpg)
-
-![Diseño ventana 4](https://preview.ibb.co/fAmOzo/parte_4.jpg)
-
-![Diseño ventana 5](https://preview.ibb.co/gmfcQT/parte_5.jpg)
-
-#### Prototipo de alta fidelidad
-
-Además, este proyecto se debe "resolver" en parejas, por lo que un objetivo
-importante es ganar experiencia en trabajos colaborativos con entrega grupal.
 
 ## Instrucciones de acceso
 
@@ -94,14 +90,6 @@ de algun software externo.
 Para acceder a la página se debe ingresar a la página Laboratoria (), en la página aparecerá 
 un logging, en ella se debe acceder con el usuario y contraseña.
 Luego aparecera la opcion para ingresar a los cohorts.
-
-## Instrucciones de operación
-
-
-## Funcionalidad
-
-Los criterios mínimos de aceptación para considerar que has completado este
-proyecto son:
 
 ## Contacto
 
