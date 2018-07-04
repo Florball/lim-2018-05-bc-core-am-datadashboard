@@ -90,9 +90,9 @@ Para acceder a la página no se requiere de la descarga de una aplicación ni de
 de algun software externo.
 Para acceder a la página se debe ingresar a la página [Laboratoria](https://florball.github.io/lim-2018-05-bc-core-am-datadashboard/src), en la página aparecerá 
 un logging, en ella se debe acceder con el usuario y contraseña.
-Luego aparecera la opcion para ingresar a los cohorts.
+Luego aparecera la opcion para ingresar a la sede donde quiere estar, despues de eso contamos con una tercera vista en la que se divisan los cohorts y se cuenta con un menu lateral para el acceso al usuario a otros enlaces.
 
-Finalmente la vista de página la página
+Finalmente la vista de primera página
 
 ## Contacto
 
