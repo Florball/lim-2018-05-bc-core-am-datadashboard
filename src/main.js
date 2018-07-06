@@ -50,7 +50,7 @@ window.addEventToCohortElem = (elem) => {
     ServiceApiRequest(urlUser, () => {
       listUser.setUsers(getCohortsUsers());
       for (const student of listUser.getUsers()) {
-        llenarlista('list-students', '', student, student.name);
+        llenarlista('list-students', 'elem-student', student, student.name);
         addEventToUserElem(document.getElementById(student.id));
       };
     });
