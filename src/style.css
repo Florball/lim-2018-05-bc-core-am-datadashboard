@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   background:#f0efef;
 }
@@ -13,24 +12,18 @@ body {
   border-radius: 10px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   margin: auto;
-  margin-top: 5%;
+  margin-top: 6%;
   padding: 0px 50px 45px;
   /* width: 38%; */
-  max-width: 380px; /* Ancho del fomulario */
+  max-width: 340px; /* Ancho del fomulario */
   /* height: 150%; */
   z-index: 1;
 }
-
 img {
   width: 90%;
   margin: auto; /* centra la imagen */
   display: block; /* quita el display en linea */
 }
-
-.inputGroup {
-  margin-bottom: 32px;
-}
-
 /* label */
 .user, .password {
   color: gray;
@@ -38,16 +31,8 @@ img {
   font-weight: 400;
   font-size: 20px;
   line-height: 145%;
+  margin-bottom: 5px;
 }
-
-.user {
-  top: 49.5%;
-}
-
-.password {
-  top: 66.6%;
-}
-
 /* input */
 #user, #password {
   font-family: 'Open Sans', sans-serif;
@@ -64,32 +49,28 @@ img {
   width: 100%;
   transition: 0.5s; 
 }
-
 #user {
   font-weight: 400;
+  margin-bottom: 15px;
   letter-spacing: 2px;
 }
-
 #password {
   font-weight: 800;
   letter-spacing: 3px;
 }
-
 #user:hover, #password:hover {
   border-bottom: 3px solid #ffc421;
 }
-
 #user:focus, #user:active, #password:focus, #password:active {
   border-bottom: 3px solid rgb(0, 0, 0);
 }
-
 /* boton */
 .logging {
   background-color: #ffe521;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
+  color: #000;
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-size: 100%; 
@@ -99,73 +80,68 @@ img {
   padding: 4%;
   transition: .2s;
   text-align: center;
-  width: 45%;
+  text-decoration: none;
+  width: 40%;
   transition: 0.3s;
 }
-
 .logging:hover {
   background-color: #fffc3df6;
 }
 
 /* PÁGINA DE BIENVENIDA */
-.laboratoriaBar {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 2px 9px 0px #c5c5c5;
-  border-bottom-style: solid;
-  border-color: #ffe521;
-  border-width: 5px;
-  overflow: hidden; /* Esta propiedad especifica si se debe recortar contenido */
-  text-align: center;
-  height: 80px;
-  width: 100%;
-}
-.laboratoriaBar2 {
-  position: fixed;
-  height: 70px;
-  margin-top: 0;
-}
-.logo {
-  width: 15%;
-  height: auto;
-  margin-left: 41.5%;
-  padding: 1%;
-}
-.laboratoriaBar2 .logo {
-line-height: 70px;
-width: 13%;
-}
 .welcome {
-  font-family: 'Open Sans', sans-serif;
-  float: right;
-  margin: 22px;
-}
-.section-sede{
-  padding-top: 70px;
+color: #000;
+font-size: 200%;
+font-family: 'Bitter', serif;
+margin-top: 4%;
+text-align: center;
 }
 .navigatingBar {
   background: rgba(1, 0, 0, 0.4);
   border-radius: 10px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
   margin: auto;
-  margin-top: 4.5%;
-  width: 30%;
+  margin-top: 3%;
+  width: 26%;
 }
 .place {
   border-radius: 10px;
-  font-size: 200%;
+  font-size: 180%;
+  font-family: 'Bitter', serif;
   list-style-type: none;
   text-align: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 4.3%;
+  padding-bottom: 4.3%;
 }
 .place:hover {
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255) ;
 }
+
 /* SEGUNDA PAGINA */
 .second-tab {
   float: left;
   padding-top: 0px;
+  width: 100%;
+}
+.logo {
+  margin-left: 4.5%;
+  margin-top: 10%;
+  padding: 1%;
+  width: 90%;
+  height: auto;
+}
+.user-ale {
+  cursor: pointer;
+  width: 40%;
+}
+.user-alejandra {
+  cursor: pointer;
+  font-family: 'Bitter', serif;
+  font-size: 100%;
+  text-align: center;
+  margin-bottom: 15%;
 }
 .menu-sedes{
   display:inline-block;
@@ -173,8 +149,10 @@ width: 13%;
   border-right-style: solid;
   border-color: #ffe521;
   border-width: 4%;
+  cursor: pointer;
   height: 900px;
   margin-right: 10px;
+  width: 20%;
 }
 .menu-butom{
   background-color: #ffe521;
@@ -198,14 +176,10 @@ width: 13%;
 #option4{
   border-radius: 0px 0px 13px 13px;
 }
-.li-list {
-  padding-bottom: 2.5%;
-  padding-top: 2.5%;
-  width: 100%;
-} 
+
 /* LISTA DE COHORTS */
 .list-cohorts {
-  width: 80%;
+  width: 70%;
   height: auto;
   font-size: 20px;
   font-family: 'Open Sans', sans-serif;
@@ -214,7 +188,13 @@ width: 13%;
   cursor: pointer;
   float: right;
   line-height: 30px;
+  margin: auto;
 }
+.li-list {
+  padding-bottom: 2.5%;
+  padding-top: 2.5%;
+  width: 100%;
+} 
 .elem-cohort {
   list-style-type: none;
   padding-top: 1.5%;
@@ -234,13 +214,6 @@ width: 13%;
   color: #000;
   font-family: 'Open Sans', sans-serif;
 
-}
-
-/* estilos para centrar el contenido en el 80% de la página */
-.wrapper {
-  width: 70%;
-  margin: auto;
-  overflow: hidden;
 }
 
 /* tabs */
