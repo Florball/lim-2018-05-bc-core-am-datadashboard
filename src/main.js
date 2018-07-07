@@ -50,19 +50,19 @@ menuSedes.addEventListener("click", (event) => {
   listOfCohorts(event.target.id)
 })
 
-const listOfStudent = (n) =>{
-  ServiceApiRequest(urlUser,()=>{
+const listOfStudent = (n) => {
+  ServiceApiRequest(urlUser, () => {
     listUser.setUsers(getUsers());
-     // for of que recorre array de json cohorts
-    listUser.getNewUsers().forEach(student =>{
-      if (student.signupCohort === n ){
-        if (student.role == "student"){
-        createList("list-students", 'elem-student', student, student.name)
+    // for of que recorre array de json cohorts
+    listUser.getNewUsers().forEach(student => {
+      if (student.signupCohort === n) {
+        if (student.role == "student") {
+          createList("list-students", 'elem-student', student, student.name)
         }
       }
-    }) 
-   }); 
- }
+    })
+  });
+}
 
 ulCohorts.addEventListener("click", (event) => {
   listOfStudent(event.target.id)
@@ -81,14 +81,14 @@ ulCohorts.addEventListener("click", (event) => {
 //       }
 //     }) 
 //    }); 
-  
+
 // })
 
-const listOfProgress = (n)=>{
-  ServiceApiRequest(urlProgress,()=>{
+const listOfProgress = (n) => {
+  ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
-     computeUsersStats(listUser.getNewUsers(),listProgress.getNewProgress(),listCohort.getCourses())
-      // console.log(newUser())
+    computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+    // console.log(newUser())
   })
 }
 ulStudents.addEventListener("click", (event) => {
