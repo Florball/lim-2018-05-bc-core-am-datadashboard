@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Data Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9R__NpeV0GkGFFguIQxWPJeRMRXE9ZU8tmYQSnVKsIjVgQcpb"
+    type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+</head>
+
+<body>
+  <!-- página de bienvenida -->
+  <div class="first-tab show" id="first-tab">
+    <p class="welcome">Bienvenid@ le desea el grupo Laboratoria! </br> Elija la sede:</p>
+    <ul class="menu-sedes" id="menu-sedes">
+      <li class="place" id= "lim">LIMA</li>
+      <li class="place" id = "scl">SANTIAGO</li>
+      <li class="place" id = "cdmx">MEXICO</li>
+      <li class="place" id ="gdl">GUADALAJARA</li>
+      <li class="place" id = "aqp" >AREQUIPA</li>
+      <li class="place" id = "spl" >SAO PAULO</li>
+    </ul>
+  </div>
+  <!-- lista de cohorts -->
+  <div class="second-tab hide" id="second-tab">
+    <nav id="main-menu" class="main-menu">
+      <a href="http://talento.laboratoria.la/"><img class="logo" src="https://preview.ibb.co/doqLs8/Laboratoria_RGB_logo_01.png" alt="Laboratoria_RGB_logo_01" title="Laboratoria.la"></a>
+      <img class="user-ale" title="perfil" src="https://image.ibb.co/dz6kNJ/Sin_t_tulo_2.png" >
+      <p class="user-alejandra" title="perfil">Alejandra Ramírez</p>
+      <h2 class="menu-butom" id="option1">SEDES</h2>
+      <h2 class="menu-butom" id="option2">PROMOCION</h2>
+      <h2 class="menu-butom" id="option3">ESTUDIANTES</h2>
+      <h2 class="menu-butom" id="option4">COACHES</h2>
+      <h2 class="menu-butom" id="option5">GENERAL</h2>
+    </nav>
+    <div class="list-cohorts">
+      <ul id="lista-cohorts" class="li-list"></ul>
+    </div>
+  </div>
+  <!-- lista de estudiantes -->
+  <div class="list-student">
+    <ul id="list-students" class="student"></ul>
+  </div>
+  <div>
+    <div id="progress" class="progress"></div>
+  </div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="main.js"></script>
+
+</body>
+
+</html>

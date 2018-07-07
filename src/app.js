@@ -2,183 +2,166 @@ const urlCohort = "../data/cohorts.json"
 const urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json"
 const urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json"
 //funcion para obtener datos json
-const ServiceApiRequest =(url,callback)=>{
+const ServiceApiRequest = (url, callback) => {
   const xhr = new XMLHttpRequest();
-     xhr.open("GET", url);
-     xhr.onload = callback;
-     xhr.send(); 
+  xhr.open("GET", url);
+  xhr.onload = callback;
+  xhr.send();
 }
 
-const getCohortsUsers = () => {
-  return JSON.parse(event.target.responseText);
+const getCohorts = () => {
+  data1 = JSON.parse(event.target.responseText);
+  return data1
+}
+
+const getUsers = () => {
+  data2 = JSON.parse(event.target.responseText);
+  return data2
 }
 const getProgress = () => {
   let data3 = JSON.parse(event.target.responseText);
-     return data3
+  return data3
 }
 
+//oteniendo courses
 const listCohort = {
-  cohorts :{},
-  setCohort:(cohorts)=>{
-    listCohort.cohorts = cohorts;
+  cohorts :[],
+  setCohort:(data)=>{
+    listCohort.cohorts = data
   },
-  getCohorts:()=>{
-    return listCohort.cohorts;
+  getNewCohort:()=>{
+    return listCohort.cohorts
   },
-  getCourses:(id)=>{
+  getCourses:()=>{
     let courses = {};
-    let intro = listCohort.cohorts.map(cohort => {
-      if(cohort.id == id){
-        courses = cohort.coursesIndex
+    let getIntro = listCohort.cohorts.map(cohort => {
+      if(cohort.id == "lim-2018-03-pre-core-pw"){
+        courses = cohort.coursesIndex 
       }
     })
-    return courses;
+    return courses
   }
 }
 
 const listUser = {
-  users : {},
-  setUsers:(list)=>{
-    listUser.users = list
+  users : [],
+  setUsers:(data)=>{
+    listUser.users = data
   },
-  getUsers:()=>{
+  getNewUsers:()=>{
     return listUser.users
   },
-//   sortName:(OrderBy,OrderDirection)=>{
-//     listUser.users.sort(function (a, b) {
-//        let labelOne = a[OrderBy]
-//        let labelTwo = b[OrderBy]
-//        let nombre1 = labelOne.toLowerCase()
-//        let nombre2 = labelTwo.toLowerCase()
-//        if(OrderDirection == 'asc'){
-//          if (nombre1 > nombre2) {
-//            return 1;
-//          }
-//          if (nombre1 <  nombre2) {
-//            return -1;
-//          } 
-//        }
-//        if(OrderDirection=='desc'){
-//          if (nombre1 < nombre2) {
-//            return 1;
-//          }
-//          if (nombre1 >  nombre2) {
-//            return -1;
-//          } 
-//        }
-//    });
-//  }
-
-
 }
-
 const listProgress = {
-  progress : {},
-  idCourse:0,
+  progress : [],
   setProgres:(progress)=>{
-    listProgress.progress = new Object(progress);
-    
+    listProgress.progress = progress;
   },
-  getProgress:()=>{
+  getNewProgress:()=>{
     return listProgress.progress;
   },
-  setIdCourse:(id)=>{
-      listProgress.idCourse = id
-  },
-  getIntroById:(id)=>{
-    if (typeof listProgress.progress[id][listProgress.idCourse] !== "undefined"){
-      return listProgress.progress[id].intro;
+  getIntro:(id,courses)=>{
+    if (typeof listProgress.progress[id].intro !== "undefined") {
+      for (let course in courses){
+        if (listProgress.progress[id][course].lenght !== 0)
+        return listProgress.progress[id][course];
+      }
     }
-    return {};
-  },
-  getParts:(id)=>{
-    const intro = listProgress.getIntroById(id)
-    const listado = [];
-    if(intro){
-      if(intro.units){
-        for (var i in intro.units) {          
-          if(intro.units[i].parts){
-            listado.push(intro.units[i].parts)
+    return {percent:0}            
+} 
+}
+let getPart=(intro)=>{
+  let list = []
+  for (let units in intro){
+    if (units == "units"){
+      for(let unit in intro[units]){
+        for (let parts in intro[units][unit]){
+          if ( parts == "parts"){
+            list.push(intro[units][unit][parts])
           }
         }
       }
     }
-    return listado
-  },
-  countElement:(list,value)=>{
-    let count = 0
-    for (let item in list) {
-        if(list[item][value]){
-            count++
+  }
+  return list
+}
+const getExersicesById = (id,courses) => {
+    let totalExercises = 0
+    let completedExercises = 0
+    let intro = listProgress.getIntro(id,courses)
+    let parts = getPart(intro).map(parts =>{
+      for (let part in parts){
+        for (let elem in parts[part]){
+          if (elem == "exercises"){
+            const exercises = parts[part][elem]
+            for(let exercise in exercises){
+              totalExercises++
+              if(exercises[exercise].completed === 1){
+                completedExercises++
+              }
+            }
+          }
         }
-    }
-    return count
-  },
-  getExersicesById:(id)=>{
-    const object= {}
-    const objectExercises = listProgress.getParts(id).map(parts => {
-    const atribExercises = parts['06-exercises'];
-      if(atribExercises){
-        object.exercises = {
-          total : Object.keys(atribExercises.exercises).length,
-          completed : listProgress.countElement(atribExercises.exercises,'completed'),
-          percent: (Math.round(listProgress.countElement(atribExercises.exercises,'completed')/Object.keys(atribExercises.exercises).length))*100
-        };
-        return parts.object
-      }     
+  
+      }
     })
-    return object.exercises
-  },
-  division:(numerador,denominador)=>{
+    const exercises = new Object();
+    exercises.total = totalExercises;
+    exercises.completed = completedExercises;
+    exercises.percent = Math.round(division(completedExercises, totalExercises) * 100)
+    return exercises;
+}
+  division = (numerador, denominador) => {
     let total = 0
-    if(numerador !== 0 && denominador !== 0){
-        total = numerador / denominador
+    if (numerador !== 0 && denominador !== 0) {
+      total = numerador / denominador
     }
     return total
   },
-  getReadsById:(id)=>{
-    let contadorTotalReads = 0;
-    let contadorCompletedReads = 0;
-    const parts = listProgress.getParts(id);
-    for (let elemOfParts in parts) {
-        for (let atribOfPart in parts[elemOfParts]) {
-            if (parts[elemOfParts][atribOfPart].type === "read") {
-              contadorTotalReads++;
-              if (parts[elemOfParts][atribOfPart].completed === 1){
-                contadorCompletedReads++;
-              }
-            }
-         }
-    }  
-    const reads = new Object ();
-    reads.total = contadorTotalReads;
-    reads.completed = contadorCompletedReads;
-    reads.percent = Math.round((contadorCompletedReads/contadorTotalReads)*100)
-  return reads;
-  },
-  getQuizzesById:(id)=>{
+  getReadsById = (id,courses) => {
+    let totalReads = 0;
+    let completedReads = 0;
+    const intro = listProgress.getIntro(id,courses);
+    const parts = getPart(intro).map(parts =>{
+    for (let part in parts) {
+      if (parts[part]["type"]=== "read") {
+        totalReads++;
+        if ( parts[part]["completed"] === 1) {
+          completedReads++;
+        }
+      }
+    }
+  })
+    const reads = new Object();
+    reads.total = totalReads;
+    reads.completed = completedReads;
+    reads.percent = Math.round(division(completedReads, totalReads) * 100)
+    return reads;
+  }
+  getQuizzesById = (id,courses) => {
     let totalQuizzes = 0;
     let completedQuizzes = 0;
     let scoreSumQuizzes = 0;
-    const parts = listProgress.getParts(id).map(part => {
-      for (let atribOfPart in part) {
-        if(part[atribOfPart].type ==='quiz'){
+    const intro = listProgress.getIntro(id,courses);
+    const parts = getPart(intro).map(parts => {
+      for (let part in parts) {
+        if (parts[part]["type"] === "quiz") {
           totalQuizzes++;
-          if (part[atribOfPart].completed === 1){
-            completedQuizzes++;               
-            } 
-            if((part[atribOfPart]).hasOwnProperty("score")){
-              scoreSumQuizzes += part[atribOfPart].score;
-            }       
+          if (parts[part]["completed"] === 1) {
+            completedQuizzes++;
+          }
+          if ((parts[part]).hasOwnProperty("score")) {
+            scoreSumQuizzes += parts[part].score;
+          }
         }
       }
-    })    
-    const quizzes = new Object ();
+    })
+    const quizzes = new Object();
     quizzes.total = totalQuizzes;
     quizzes.completed = completedQuizzes;
-    quizzes.percent = Math.round( listProgress.division(completedQuizzes,totalQuizzes)*100);
+    quizzes.percent = Math.round(division(completedQuizzes, totalQuizzes) * 100);
     quizzes.scoreSum = scoreSumQuizzes;
-    quizzes.scoreAvg = Math.round(listProgress.division(scoreSumQuizzes,completedQuizzes));
-   return quizzes;
+    quizzes.scoreAvg = Math.round(division(scoreSumQuizzes, completedQuizzes));
+
+    return quizzes;
   }
-}
