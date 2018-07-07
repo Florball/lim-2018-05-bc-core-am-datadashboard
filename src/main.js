@@ -1,13 +1,21 @@
 // declarando variable DE BOTON
 let btnLogging = document.getElementById('logging');
-const laboratoria1 = document.getElementById('laboratoria-1');
-const cohorts = document.getElementById('sede-lim');
-const laboratoria2 = document.getElementById('laboratoria-2');
+const firstTab = document.getElementById('first-tab');
+const secondTab = document.getElementById('second-tab');
 const optionSedes = document.getElementById('option1');
 const optionPromocion = document.getElementById('option2');
 const optionEstudiantes = document.getElementById('option3');
-const optionGeneral = document.getElementById('option4');
-// funcion para ingresar a login con usuario y contraseña
+const menuSedes = document.getElementById('menu-sedes');
+const ulCohorts = document.getElementById("lista-cohorts");
+const ulStudents = document.getElementById("list-students")
+const search = document.getElementById('my-search')
+// funcion para ocultar tabs
+const hideTabs = (tab1, tab2, tab3) => {
+  tab1.classList.replace("show", "hide");
+  tab2.classList.replace("hide", "show");
+  tab3.classList.replace("hide", "show");
+}
+// funcion para agregar evento a logging
 btnLogging = (event) => {
   if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
     continue;
@@ -16,70 +24,109 @@ btnLogging = (event) => {
     alert("Por favor ingrese el nombre de usuario y la contraseña correcta.");
   };
 };
-llenarlista = (ulId, classLi, element, html) => {
+let createList = (ulId, classLi, element, html) => {
   const list = document.getElementById(ulId);
-  const liCohorts = document.createElement('li');
-  liCohorts.setAttribute('id', element.id);
-  liCohorts.setAttribute('class', classLi);
-  liCohorts.innerHTML = html;
-  list.appendChild(liCohorts);
-};
-// agregar evento a boton LIMA (aparece lista de cohorts/promociones)
-cohorts.addEventListener('click', (event) => {
-  event.preventDefault();
-  // función para obtener lista de cohorts/promociones
-  ServiceApiRequest(urlCohort, () => {
-    laboratoria1.classList.replace('show', 'hide');
-    laboratoria2.classList.replace('hide', 'show');
-    // for of que recorre array de json cohorts
-    listCohort.setCohort(getCohortsUsers())
-    for (const cohort of listCohort.getCohorts()) {
-      llenarlista('lista-cohorts', 'elem-cohort', cohort, cohort.id);
-      if (cohort.id === 'lim-2018-03-pre-core-pw') {
-        addEventToCohortElem(document.getElementById(cohort.id));
-      };
-    };
-  });
-});
+  const elementLi = document.createElement('li');
+  elementLi.setAttribute('id', element.id);
+  elementLi.setAttribute('class', classLi);
+  elementLi.innerHTML = html;
+  list.appendChild(elementLi);
+}
 
-// agregar evento a un cohort(lim-2018-03-pre-core-pw)
-window.addEventToCohortElem = (elem) => {
-  elem.addEventListener('click', (event) => {
-    event.preventDefault();
-    // funcion para recorrer json users(obtener nombres de estudiantes)
-    ServiceApiRequest(urlUser, () => {
-      listUser.setUsers(getCohortsUsers());
-      for (const student of listUser.getUsers()) {
-        llenarlista('list-students', 'elem-student', student, student.name);
-        addEventToUserElem(document.getElementById(student.id));
-      };
-    });
+const listOfCohorts = (id) => {
+  // funcion para obtener lista de cohorts/promociones
+  ServiceApiRequest(urlCohort, () => {
+    hideTabs(firstTab, secondTab, secondTab)
+    // for of que recorre array de json cohorts
+    listCohort.setCohort(getCohorts());
+    listCohort.getNewCohort().forEach(cohort => {
+      if (cohort.id.startsWith(id)) {
+
+        createList("lista-cohorts", 'elem-cohort', cohort, cohort.id)
+      }
+    })
   });
-};
-// agregar evento a los elementos de la lista de estudiantes
-window.addEventToUserElem = (elem) => {
-  elem.addEventListener('click', () => {
-    event.preventDefault();
-    // funcion para obtener porcentaje total de estudiantes
-    ServiceApiRequest(urlProgress, () => {
-      const id = elem.getAttribute('id');
-      const data = listProgress;
-      listProgress.setProgres(getProgress());
-      if (listProgress) {
-        // console.log(data)
-        computeUsersStats(listUser.getUsers(), listProgress.getProgress(), listCohort.getCourses());
-        const elemnnto = document.getElementsByClassName('elimina');
-        if (elemnnto) {
-        };
-        const list = document.getElementById('progress');
-        const a = document.createElement('a');
-        const percent = document.createElement('span');
-        const lista = document.createElement('li');
-        percent.setAttribute('class', 'elimina');
-        percent.innerHTML = 'porcentaje total : ' + data.percent;
-        lista.appendChild(percent);
-        list.appendChild(lista);
-      };
-    });
+}
+
+menuSedes.addEventListener("click", (event) => {
+  listOfCohorts(event.target.id)
+})
+
+const listOfStudent = (n) => {
+  ServiceApiRequest(urlUser, () => {
+    listUser.setUsers(getUsers());
+    // for of que recorre array de json cohorts
+    listUser.getNewUsers().forEach(student => {
+      if (student.signupCohort === n) {
+        if (student.role == "student") {
+          createList("list-students", 'elem-student', student, student.name)
+        }
+      }
+    })
   });
-};
+}
+
+ulCohorts.addEventListener("click", (event) => {
+  
+  listOfStudent(event.target.id)
+  listOfProgress()
+
+})
+
+const filter = (value) => {
+  ServiceApiRequest(urlUser, () => {
+    listUser.setUsers(filterUsers(getUsers(), value))
+    ulStudents.innerHTML = ''
+    listUser.getNewUsers().forEach(student => {
+      if (student.role == "student") {
+        createList("list-students", 'elem-student', student, student.name)
+      }
+    })
+  });
+}
+
+search.addEventListener("keyup", (event) => {
+  filter(event.target.value)
+})
+
+const listOfProgress = () => {
+  ServiceApiRequest(urlProgress, () => {
+    listProgress.setProgres(getProgress());
+    computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+  })
+}
+
+ulStudents.addEventListener("click", (event) => {
+  listOfProgress()
+})
+
+//let addEventListenerOrder=(listUser,listProgress,listCohort)=>{
+  document.getElementById('desc').addEventListener("click", (event) => {
+    let orderBy = document.getElementById('orderBy').value;
+   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+   console.log(orderBy)
+
+   sortUsers(user,orderBy,'desc') 
+   ulStudents.innerHTML = ''
+
+   user.forEach(student => {
+    if (student.role == "student") {
+      createList("list-students", 'elem-student', student, student.name)
+    }
+  })
+  })
+  document.getElementById('asc').addEventListener("click", (event) => {
+    let orderBy = document.getElementById('orderBy').value;
+   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+   
+   sortUsers(user,orderBy,'asc') 
+   ulStudents.innerHTML = ''
+   user.forEach(student => {
+    if (student.role == "student") {
+      createList("list-students", 'elem-student', student, student.name)
+    }
+  })
+  })
+//}
+
+  
