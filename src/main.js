@@ -8,6 +8,7 @@ const optionEstudiantes = document.getElementById('option3');
 const menuSedes = document.getElementById('menu-sedes');
 const ulCohorts = document.getElementById("lista-cohorts");
 const ulStudents = document.getElementById("list-students")
+const search = document.getElementById('my-search')
 // funcion para ocultar tabs
 const hideTabs = (tab1, tab2, tab3) => {
   tab1.classList.replace("show", "hide");
@@ -23,7 +24,7 @@ btnLogging = (event) => {
     alert("Por favor ingrese el nombre de usuario y la contraseña correcta.");
   };
 };
-const createList = (ulId, classLi, element, html) => {
+let createList = (ulId, classLi, element, html) => {
   const list = document.getElementById(ulId);
   const elementLi = document.createElement('li');
   elementLi.setAttribute('id', element.id);
@@ -40,6 +41,7 @@ const listOfCohorts = (id) => {
     listCohort.setCohort(getCohorts());
     listCohort.getNewCohort().forEach(cohort => {
       if (cohort.id.startsWith(id)) {
+
         createList("lista-cohorts", 'elem-cohort', cohort, cohort.id)
       }
     })
@@ -65,32 +67,66 @@ const listOfStudent = (n) => {
 }
 
 ulCohorts.addEventListener("click", (event) => {
+  
   listOfStudent(event.target.id)
+  listOfProgress()
+
 })
 
-// document.getElementById('my-search').addEventListener("keyup", (event) => {
-//   ServiceApiRequest(urlUser,()=>{
-//     listUser.setUsers(getUsers());
-//      // for of que recorre array de json cohorts
-//     filterUsers(listUser.getNewUsers())
-//     listUser.getNewUsers().forEach(student =>{
-//       if (student.signupCohort === event.target.id ){
-//         if (student.role == "student"){
-//         createList("list-students", 'elem-student', student, student.name)
-//         }
-//       }
-//     }) 
-//    }); 
+const filter = (value) => {
+  ServiceApiRequest(urlUser, () => {
+    listUser.setUsers(filterUsers(getUsers(), value))
+    ulStudents.innerHTML = ''
+    listUser.getNewUsers().forEach(student => {
+      if (student.role == "student") {
+        createList("list-students", 'elem-student', student, student.name)
+      }
+    })
+  });
+}
 
-// })
+search.addEventListener("keyup", (event) => {
+  filter(event.target.value)
+})
 
-const listOfProgress = (n) => {
+const listOfProgress = () => {
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
     computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
-    // console.log(newUser())
   })
 }
+
 ulStudents.addEventListener("click", (event) => {
-  listOfProgress(event.target.id)
+  listOfProgress()
 })
+
+//let addEventListenerOrder=(listUser,listProgress,listCohort)=>{
+  document.getElementById('desc').addEventListener("click", (event) => {
+    let orderBy = document.getElementById('orderBy').value;
+   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+   console.log(orderBy)
+
+   sortUsers(user,orderBy,'desc') 
+   ulStudents.innerHTML = ''
+
+   user.forEach(student => {
+    if (student.role == "student") {
+      createList("list-students", 'elem-student', student, student.name)
+    }
+  })
+  })
+  document.getElementById('asc').addEventListener("click", (event) => {
+    let orderBy = document.getElementById('orderBy').value;
+   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+   
+   sortUsers(user,orderBy,'asc') 
+   ulStudents.innerHTML = ''
+   user.forEach(student => {
+    if (student.role == "student") {
+      createList("list-students", 'elem-student', student, student.name)
+    }
+  })
+  })
+//}
+
+  
