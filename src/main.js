@@ -18,7 +18,6 @@ btnLogging.addEventListener('click', function () {
     alert("Por favor ingrese el nombre de usuario y la contraseña correcta.");
   }
 });
-
 llenarlista=(ulId,classLi,element,html)=>{
   const list = document.getElementById(ulId);
   const liCohorts = document.createElement('li');
@@ -85,24 +84,5 @@ window.addEventToUserElem = (elem,cohortId,listCohort,listUse) => {
   })
 };
 
-const filterInput = document.getElementById("my-search")
-const filterNames=()=>{
-  const filterValue = filterInput.value.toUpperCase()
-  let ulStudents = document.getElementById("list-students");
-  let liStudent  = ulStudents.querySelectorAll("li.elem-student");
-  for (item in listUser.users){
-     i = 0
-     if (i<liStudent.length){
-       i++
-     }
-     let m = liStudent[i].getElementById(student.id);
-     if (m.innerHTML.toUpperCase().indexOf(filterValue)>-1){
-      liStudent[i].style.display = "";
-     } else{
-      liStudent[i].style.display = "none";
-     }
-    
-     }
-}
+// const listco = document.querySelectorAll()
 
-filterInput.addEventListener("keyup",filterNames(listUser.getUsers(),filterNames()))

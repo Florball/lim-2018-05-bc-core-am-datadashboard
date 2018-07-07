@@ -20,19 +20,19 @@ const getProgress = () => {
 const listCohort = {
   cohorts :{},
   setCohort:(cohorts)=>{
-    listCohort.cohorts = cohorts
+    listCohort.cohorts = cohorts;
   },
   getCohorts:()=>{
-    return listCohort.cohorts
+    return listCohort.cohorts;
   },
   getCourses:(id)=>{
-    let cohortObj = {};
-    let courses = listCohort.cohorts.map(cohort => {
+    let courses = {};
+    let intro = listCohort.cohorts.map(cohort => {
       if(cohort.id == id){
-        cohortObj = cohort.coursesIndex
+        courses = cohort.coursesIndex
       }
     })
-    return cohortObj
+    return courses;
   }
 }
 
@@ -44,78 +44,32 @@ const listUser = {
   getUsers:()=>{
     return listUser.users
   },
-  sortStats:(OrderBy,OrderDirection)=>{
-    listUser.users.sort(function (a, b) {
-      let labelOne = a.stats[OrderBy]
-      let labelTwo = b.stats[OrderBy]
-      let nombre1 = labelOne
-      let nombre2 = labelTwo
-      if(OrderDirection == 'asc'){
-        if (nombre1 > nombre2) {
-          return 1;
-        }
-        if (nombre1 <  nombre2) {
-          return -1;
-        } 
-      }
-      if(OrderDirection=='desc'){
-        if (nombre1 < nombre2) {
-          return 1;
-        }
-        if (nombre1 >  nombre2) {
-          return -1;
-        } 
-      }
-  });
-  },
-  // exercisesExercises:(OrderBy,OrderDirection)=>{
-  //   listUser.users.sort(function (a, b) {
-  //     let labelOne = a.stats.exercises[OrderBy]
-  //     let labelTwo = b.stats.exercises[OrderBy]
-  //     let nombre1 = labelOne
-  //     let nombre2 = labelTwo
-  //     if(OrderDirection == 'asc'){
-  //       if (nombre1 > nombre2) {
-  //         return 1;
-  //       }
-  //       if (nombre1 <  nombre2) {
-  //         return -1;
-  //       } 
-  //     }
-  //     if(OrderDirection=='desc'){
-  //       if (nombre1 < nombre2) {
-  //         return 1;
-  //       }
-  //       if (nombre1 >  nombre2) {
-  //         return -1;
-  //       } 
-  //     }
-  // });
-  // },
-  sortName:(OrderBy,OrderDirection)=>{
-     listUser.users.sort(function (a, b) {
-        let labelOne = a[OrderBy]
-        let labelTwo = b[OrderBy]
-        let nombre1 = labelOne.toLowerCase()
-        let nombre2 = labelTwo.toLowerCase()
-        if(OrderDirection == 'asc'){
-          if (nombre1 > nombre2) {
-            return 1;
-          }
-          if (nombre1 <  nombre2) {
-            return -1;
-          } 
-        }
-        if(OrderDirection=='desc'){
-          if (nombre1 < nombre2) {
-            return 1;
-          }
-          if (nombre1 >  nombre2) {
-            return -1;
-          } 
-        }
-    });
-  }
+//   sortName:(OrderBy,OrderDirection)=>{
+//     listUser.users.sort(function (a, b) {
+//        let labelOne = a[OrderBy]
+//        let labelTwo = b[OrderBy]
+//        let nombre1 = labelOne.toLowerCase()
+//        let nombre2 = labelTwo.toLowerCase()
+//        if(OrderDirection == 'asc'){
+//          if (nombre1 > nombre2) {
+//            return 1;
+//          }
+//          if (nombre1 <  nombre2) {
+//            return -1;
+//          } 
+//        }
+//        if(OrderDirection=='desc'){
+//          if (nombre1 < nombre2) {
+//            return 1;
+//          }
+//          if (nombre1 >  nombre2) {
+//            return -1;
+//          } 
+//        }
+//    });
+//  }
+
+
 }
 
 const listProgress = {
