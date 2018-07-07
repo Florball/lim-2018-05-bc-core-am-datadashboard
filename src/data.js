@@ -1,29 +1,57 @@
-// window.computeruserstate
 window.computeUsersStats = (users, progress, courses) => {
-  listProgress.setProgres(progress)
-
-  const listUsers = users.map(usersWithStats => {
-
+  const allUsers = users.map(usersWithStats => {
     usersWithStats.stats = {
-      percent: listProgress.getIntroById(usersWithStats.id).percent,
-      exercises: listProgress.getExersicesById(usersWithStats.id),
-      reads: listProgress.getReadsById(usersWithStats.id),
-      quizzes: listProgress.getQuizzesById(usersWithStats.id),
+      percent: listProgress.getIntro(usersWithStats.id, courses).percent,
+      exercises: getExersicesById(usersWithStats.id, courses),
+      reads: getReadsById(usersWithStats.id, courses),
+      quizzes: getQuizzesById(usersWithStats.id, courses),
     };
     return usersWithStats
   });
-  console.log(listUsers)
-  return listUsers;
+  return allUsers;
 };
-const dynamicSort = (property, orderDirection) => {
-  let sortOrder = orderDirection ? 1 : -1;
-  return function (a, b) {
-    let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-    return result * sortOrder;
-  };
-};
-window.sortUsers = (users, orderBy, orderDirection) => {
-  const sortUsersList = users.sort(dynamicSort(orderBy, orderDirection));;
-  console.log(sortUsersList);
-  return sortUsersList;
-};
+
+window.sortUsers = (users, orderBy, orderDireccion) => {
+  listUser.setUsers(users)
+  
+  if (orderBy == 'stats.percent') {
+      var res = orderBy.split(".");
+
+      listUser.sort(res[1], orderDireccion, 2)
+
+  }else if(orderBy == 'stats.exercises.total' ||
+      orderBy == 'stats.exercises.completed' ||
+      orderBy == 'stats.exercises.percent') {
+        var res = orderBy.split(".");
+      
+
+      listUser.sort(res[2], orderDireccion, 3)
+  }else if(orderBy == 'stats.reads.total' ||
+      orderBy == 'stats.reads.completed' ||
+      orderBy == 'stats.reads.percent') {
+        var res = orderBy.split(".");
+      listUser.sort(res[2], orderDireccion, 4)
+  }else if(orderBy == 'stats.quizzes.total' ||
+      orderBy == 'stats.quizzes.completed' ||
+      orderBy == 'stats.quizzes.percent') {
+        var res = orderBy.split(".");
+
+      listUser.sort(res[2], orderDireccion, 5)
+  } else {
+      listUser.sort(orderBy, orderDireccion)
+
+  }
+  // este ordena solo nombres
+
+  // este ordena stats
+  // listUser.sortStats('percent','asc')   
+}
+
+window.filterUsers = (users, search) => {
+  let list = users.filter((user) => {
+    let nombre = user.name.toUpperCase()
+    return nombre.indexOf(search.toUpperCase()) + 1
+  })
+  return list
+
+}
