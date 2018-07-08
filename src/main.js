@@ -18,9 +18,9 @@ const hideTabs = (tab1, tab2, tab3) => {
 // funcion para agregar evento a logging
 btnLogging = (event) => {
   if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
-    continue;
+    // continue ;
   } else {
-    event.preventDefault(); // Evita que accedan a la página sin contraseña
+    event.preventDefault(); // Evitnpm testa que accedan a la página sin contraseña
     alert("Por favor ingrese el nombre de usuario y la contraseña correcta.");
   };
 };
@@ -67,7 +67,7 @@ const listOfStudent = (n) => {
 }
 
 ulCohorts.addEventListener("click", (event) => {
-  
+
   listOfStudent(event.target.id)
   listOfProgress()
 
@@ -101,32 +101,31 @@ ulStudents.addEventListener("click", (event) => {
 })
 
 //let addEventListenerOrder=(listUser,listProgress,listCohort)=>{
-  document.getElementById('desc').addEventListener("click", (event) => {
-    let orderBy = document.getElementById('orderBy').value;
-   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
-   console.log(orderBy)
+document.getElementById('desc').addEventListener("click", (event) => {
+  let orderBy = document.getElementById('orderBy').value;
+  let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+  console.log(orderBy)
 
-   sortUsers(user,orderBy,'desc') 
-   ulStudents.innerHTML = ''
+  sortUsers(user, orderBy, 'desc')
+  ulStudents.innerHTML = ''
 
-   user.forEach(student => {
+  user.forEach(student => {
     if (student.role == "student") {
       createList("list-students", 'elem-student', student, student.name)
     }
   })
-  })
-  document.getElementById('asc').addEventListener("click", (event) => {
-    let orderBy = document.getElementById('orderBy').value;
-   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
-   
-   sortUsers(user,orderBy,'asc') 
-   ulStudents.innerHTML = ''
-   user.forEach(student => {
+})
+document.getElementById('asc').addEventListener("click", (event) => {
+  let orderBy = document.getElementById('orderBy').value;
+  let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+
+  sortUsers(user, orderBy, 'asc')
+  ulStudents.innerHTML = ''
+  user.forEach(student => {
     if (student.role == "student") {
       createList("list-students", 'elem-student', student, student.name)
     }
   })
-  })
+})
 //}
 
-  
