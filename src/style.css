@@ -171,6 +171,9 @@ text-align: center;
 .menu-butom:hover {
   background-color:  #fffc3df6;
 }
+.menu-butom:active {
+  background-color:  #fffc3df6;
+}
 #option1 {
   border-radius: 13px 13px 0px 0px;
 }
