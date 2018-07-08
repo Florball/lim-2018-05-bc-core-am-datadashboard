@@ -37,10 +37,6 @@ window.sortUsers = (users, orderBy, orderDireccion) => {
   } else {
     listUser.sort(orderBy, orderDireccion);
   };
-  // este ordena solo nombres
-
-  // este ordena stats
-  // listUser.sortStats('percent','asc')   
 };
 
 window.filterUsers = (users, search) => {

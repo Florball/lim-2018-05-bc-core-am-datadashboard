@@ -51,61 +51,61 @@ window.listUser = {
   getNewUsers: () => {
     return listUser.users
   },
-  sort:(OrderBy,OrderDirection,level = 1)=>{
-    listUser.users.sort(function (a, b) {     
+  sort: (OrderBy, OrderDirection, level = 1) => {
+    listUser.users.sort(function (a, b) {
       let nombre1 = ''
-        let nombre2 = ''
-      if(level == 1){
+      let nombre2 = ''
+      if (level == 1) {
         let labelOne = a[OrderBy]
         let labelTwo = b[OrderBy]
         nombre1 = labelOne.toLowerCase()
         nombre2 = labelTwo.toLowerCase()
-        
+
       }
-      if(level == 2){
+      if (level == 2) {
         nombre1 = a.stats[OrderBy]
         nombre2 = b.stats[OrderBy]
       }
 
-      if(level == 3){
+      if (level == 3) {
         nombre1 = a.stats.exercises
-        if(a["stats"]["exercises"]){
+        if (a["stats"]["exercises"]) {
           nombre1 = a["stats"]["exercises"][OrderBy]
         }
 
-        if(b["stats"]["exercises"]){
+        if (b["stats"]["exercises"]) {
           nombre2 = b['stats']['exercises'][OrderBy]
         }
         console.log(nombre1)
-          console.log(nombre2)
-        
+        console.log(nombre2)
+
       }
 
-      if(level == 4){
+      if (level == 4) {
         nombre1 = a.stats.reads[OrderBy]
         nombre2 = b.stats.reads[OrderBy]
       }
 
-      if(level == 5){
+      if (level == 5) {
         nombre1 = a.stats.quizzes[OrderBy]
         nombre2 = b.stats.quizzes[OrderBy]
       }
 
-      if(OrderDirection == 'asc'){
+      if (OrderDirection == 'asc') {
         if (nombre1 > nombre2) {
           return 1;
         }
-        if (nombre1 <  nombre2) {
+        if (nombre1 < nombre2) {
           return -1;
-        } 
+        }
       }
-      if(OrderDirection=='desc'){
+      if (OrderDirection == 'desc') {
         if (nombre1 < nombre2) {
           return 1;
         }
-        if (nombre1 >  nombre2) {
+        if (nombre1 > nombre2) {
           return -1;
-        } 
+        }
       }
 
 

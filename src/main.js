@@ -9,18 +9,27 @@ const menuSedes = document.getElementById('menu-sedes');
 const ulCohorts = document.getElementById('lista-cohorts');
 const ulStudents = document.getElementById('list-students')
 const search = document.getElementById('my-search')
+const thirdTab = document.getElementById("third-tab")
+const sectionList = document.getElementById("side-list")
 // funcion para ocultar tabs
-const hideTabs = (tab1, tab2, tab3) => {
+const hideTabs = (tab1, tab2,tab3 ='', tab4 = '') => {
   tab1.classList.replace("show", "hide");
   tab2.classList.replace("hide", "show");
-  tab3.classList.replace("hide", "show");
+  if(tab3!=''){
+    tab3.classList.replace("hide", "show");
+
+  }
+  if(tab4!=''){
+    tab4.classList.replace("show", "hide");
+
+  }
 };
 // funcion para agregar evento a logging
 btnLogging = (event) => {
   if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
-    continue;
+    // continue ;
   } else {
-    event.preventDefault(); // Evita que accedan a la página sin contraseña
+    event.preventDefault(); // Evitnpm testa que accedan a la página sin contraseña
     alert("Por favor ingrese el nombre de usuario y la contraseña correcta.");
   };
 };
@@ -36,7 +45,7 @@ let createList = (ulId, classLi, element, html) => {
 const listOfCohorts = (id) => {
   // funcion para obtener lista de cohorts/promociones
   ServiceApiRequest(urlCohort, () => {
-    hideTabs(firstTab, secondTab, secondTab);
+    hideTabs(firstTab, secondTab, sectionList)
     // for of que recorre array de json cohorts
     listCohort.setCohort(getCohorts());
     listCohort.getNewCohort().forEach(cohort => {
@@ -54,6 +63,8 @@ menuSedes.addEventListener("click", (event) => {
 
 const listOfStudent = (n) => {
   ServiceApiRequest(urlUser, () => {
+
+    hideTabs(sectionList,thirdTab)
     listUser.setUsers(getUsers());
     // for of que recorre array de json cohorts
     listUser.getNewUsers().forEach(student => {
@@ -67,7 +78,6 @@ const listOfStudent = (n) => {
 };
 
 ulCohorts.addEventListener("click", (event) => {
-
   listOfStudent(event.target.id);
   listOfProgress();
 });
