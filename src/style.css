@@ -138,23 +138,25 @@ text-align: center;
 }
 .user-alejandra {
   cursor: pointer;
-  font-family: 'Bitter', serif;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
   font-size: 100%;
   text-align: center;
   margin-bottom: 15%;
 }
-.main-menu{
-  display:inline-block;
+.main-menu {
   background: none;
   border-right-style: solid;
   border-color: #ffe521;
   border-width: 4%;
   cursor: pointer;
-  height: 3000px;
+  display:inline-block;
+  height: 1100%;
   margin-right: 10px;
+  position: fixed;
   width: 20%;
 }
-.menu-butom{
+.menu-butom {
   background-color: #ffe521;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   font-size: 150%;
@@ -169,44 +171,66 @@ text-align: center;
 .menu-butom:hover {
   background-color:  #fffc3df6;
 }
-#option1{
-  margin-top:4%;
+#option1 {
   border-radius: 13px 13px 0px 0px;
 }
-#option5{
+#option3 {
+  margin-top: 0.3px;
+}
+#option5 {
   border-radius: 0px 0px 13px 13px;
 }
 
 /* LISTA DE COHORTS */
 .list-cohorts {
-  font-size: 22px;
+  font-size: 20px;
   font-family: 'Bitter', serif;
+  text-transform: uppercase;
   float: right;
   z-index: 2;
   cursor: pointer;
   line-height: 30px;
-  padding-top: 6%;
+  padding-top: 3%;
   margin: auto;
-  width: 60%;
+  width: 62%;
 }
 .li-list {
-  padding-bottom: 2.5%;
-  padding-top: 2.5%;
+  padding-bottom: 2.8%;
+  padding-top: 2.8%;
   width: 100%;
 }
 .elem-cohort {
-  list-style-type: none;
+  /* list-style-type: none; */
   margin-right: 30%;
   padding-top: 1.5%;
   padding-bottom: 1.5%;
   padding-left: 3%;
-  padding-right: 9px;
+  padding-right: 3%;
+  transition: 0.1s;
 }
 .elem-cohort:hover {
   background-color: rgb(86, 248, 154);
 }
+/* contiene lista de estudiantes y el buscador corresporndiente */
 .list-student {
   margin: auto;
+  width: 100%;
+}
+.search {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  background: transparent;
+  border: 2.7px solid rgb(86, 248, 154);
+  border-radius: 55px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  margin-bottom: 20px;
+  margin-top: 5%;
+  margin-left: 2%;
+  padding-top: 0.7%;
+  padding-bottom: 0.7%;
+  padding-left: 1.4%;
+  padding-right: 0;
+  width: 270px;
 }
 .student {
   color: #000;
@@ -221,10 +245,58 @@ text-align: center;
   padding-bottom: 1.5%;
   padding-left: 3%;
   padding-right: 9px;
+  transition: 0.1s;
 }
 .elem-student:hover {
   background-color: rgb(86, 248, 154);
-
+}
+.orderBy {
+  background-color: rgb(86, 248, 154);
+  border: 4px solid rgb(86, 248, 154);
+  border-radius: 24px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  overflow: hidden;
+  margin: 2%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 0.7%;
+  text-overflow: ellipsis;
+  width: 19%;
+  white-space: nowrap;
+}
+.orderBy:hover {
+  background-color: rgba(134, 255, 185, 0.966);
+  border: 4px solid rgba(134, 255, 185, 0.966);
+  color: rgb(58, 35, 35);
+  padding-top: 0.4%;
+  padding-bottom: 0.6%;
+}
+.order-abc {
+  background-color: transparent;
+  border: 2.7px solid rgb(86, 248, 154);
+  border-radius: 21px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin: 2%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 0.7%;
+  padding-right: 0.7%;
+  width: 7%;
+  transition: 0.5s;
+}
+.order-abc:hover {
+  background-color: rgba(134, 255, 185, 0.966);
+  border: 4px solid rgba(134, 255, 185, 0.966);
+  color: rgb(58, 35, 35);
+}
+.order-abc:focus {
+  background-color: rgb(86, 248, 154);
 }
 /* tabs */
 .hide {
@@ -233,3 +305,18 @@ text-align: center;
 .show {
   display: block;
 }
+
+/* RESPONSIVE */
+/* @media only screen and (min-device-width: 320px) and (max-device-width : 480px) {
+  .list-cohorts {
+    width: 30%;
+  }
+  .elem-cohort {
+  margin-right: 10%;
+  margin-left: 5%;
+  margin-top: 0;
+  }
+  #option5 {
+    margin-top: 1%;
+  }
+} */
