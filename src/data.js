@@ -6,52 +6,48 @@ window.computeUsersStats = (users, progress, courses) => {
       reads: getReadsById(usersWithStats.id, courses),
       quizzes: getQuizzesById(usersWithStats.id, courses),
     };
-    return usersWithStats
+    return usersWithStats;
   });
   return allUsers;
 };
 
 window.sortUsers = (users, orderBy, orderDireccion) => {
-  listUser.setUsers(users)
-  
+  listUser.setUsers(users);
+
   if (orderBy == 'stats.percent') {
-      var res = orderBy.split(".");
+    var res = orderBy.split(".");
 
-      listUser.sort(res[1], orderDireccion, 2)
+    listUser.sort(res[1], orderDireccion, 2);
 
-  }else if(orderBy == 'stats.exercises.total' ||
-      orderBy == 'stats.exercises.completed' ||
-      orderBy == 'stats.exercises.percent') {
-        var res = orderBy.split(".");
-      
-
-      listUser.sort(res[2], orderDireccion, 3)
-  }else if(orderBy == 'stats.reads.total' ||
-      orderBy == 'stats.reads.completed' ||
-      orderBy == 'stats.reads.percent') {
-        var res = orderBy.split(".");
-      listUser.sort(res[2], orderDireccion, 4)
-  }else if(orderBy == 'stats.quizzes.total' ||
-      orderBy == 'stats.quizzes.completed' ||
-      orderBy == 'stats.quizzes.percent') {
-        var res = orderBy.split(".");
-
-      listUser.sort(res[2], orderDireccion, 5)
+  } else if (orderBy == 'stats.exercises.total' ||
+    orderBy == 'stats.exercises.completed' ||
+    orderBy == 'stats.exercises.percent') {
+    var res = orderBy.split(".");
+    listUser.sort(res[2], orderDireccion, 3);
+  } else if (orderBy == 'stats.reads.total' ||
+    orderBy == 'stats.reads.completed' ||
+    orderBy == 'stats.reads.percent') {
+    var res = orderBy.split(".");
+    listUser.sort(res[2], orderDireccion, 4)
+  } else if (orderBy == 'stats.quizzes.total' ||
+    orderBy == 'stats.quizzes.completed' ||
+    orderBy == 'stats.quizzes.percent') {
+    var res = orderBy.split(".");
+    listUser.sort(res[2], orderDireccion, 5);
   } else {
-      listUser.sort(orderBy, orderDireccion)
-
-  }
+    listUser.sort(orderBy, orderDireccion);
+  };
   // este ordena solo nombres
 
   // este ordena stats
   // listUser.sortStats('percent','asc')   
-}
+};
 
 window.filterUsers = (users, search) => {
   let list = users.filter((user) => {
-    let nombre = user.name.toUpperCase()
-    return nombre.indexOf(search.toUpperCase()) + 1
-  })
-  return list
+    let nombre = user.name.toUpperCase();
+    return nombre.indexOf(search.toUpperCase()) + 1;
+  });
+  return list;
 
-}
+};
