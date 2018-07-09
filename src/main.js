@@ -11,6 +11,7 @@ const ulStudents = document.getElementById('list-students')
 const search = document.getElementById('my-search')
 const thirdTab = document.getElementById("third-tab")
 const sectionList = document.getElementById("side-list")
+const progressDetail = document.getElementById("progress-detail")
 // funcion para ocultar tabs
 const hideTabs = (tab1, tab2,tab3 ='', tab4 = '') => {
   tab1.classList.replace("show", "hide");
@@ -106,14 +107,51 @@ const listOfProgress = () => {
 };
 
 ulStudents.addEventListener("click", (event) => {
-  listOfProgress();
+  //listOfProgress();
+  ServiceApiRequest(urlProgress, () => {
+    listProgress.setProgres(getProgress());
+    progressDetail.innerHTML=''
+    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+    Lis = findUsers(Lis,event.target.id)
+    const elementLi = document.createElement('span');
+    elementLi.innerHTML = "total percent : "+Lis.percent;
+    progressDetail.appendChild(elementLi);
+    const elementLi2 = document.createElement('span');
+    elementLi2.innerHTML = "total exercises : ";
+    progressDetail.appendChild(elementLi2);
+    const elementLi3 = document.createElement('li');
+    elementLi3.innerHTML = Lis.exercises.total;  
+    progressDetail.appendChild(elementLi3);
+    const elementLi4 = document.createElement('li');
+    elementLi4.innerHTML = Lis.exercises.completed;  
+    progressDetail.appendChild(elementLi4);
+    const elementLi5 = document.createElement('li');
+    elementLi5.innerHTML = Lis.exercises.percent;    
+    progressDetail.appendChild(elementLi5);
+
+    const elementLi6 = document.createElement('span');
+    elementLi6.innerHTML = "total reads : ";
+    progressDetail.appendChild(elementLi6);
+    const elementLi7 = document.createElement('li');
+    elementLi7.innerHTML = Lis.reads.total;  
+    progressDetail.appendChild(elementLi7);
+    const elementLi8 = document.createElement('li');
+    elementLi8.innerHTML = Lis.reads.completed;  
+    progressDetail.appendChild(elementLi8);
+    const elementLi9 = document.createElement('li');
+    elementLi9.innerHTML = Lis.reads.percent;    
+    progressDetail.appendChild(elementLi9);
+    console.log(Lis);
+
+  
+  });
 });
 
 //let addEventListenerOrder=(listUser,listProgress,listCohort)=>{
 document.getElementById('desc').addEventListener("click", (event) => {
   let orderBy = document.getElementById('orderBy').value;
   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
-  console.log(orderBy);
+  
 
   sortUsers(user, orderBy, 'desc');
   ulStudents.innerHTML = '';

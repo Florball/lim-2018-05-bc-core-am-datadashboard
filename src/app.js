@@ -1,8 +1,8 @@
-const urlCohort = "../data/cohorts.json"
-const urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json"
-const urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json"
-//funcion para obtener datos json
-const ServiceApiRequest = (url, callback) => {
+let urlCohort = "../data/cohorts.json"
+let urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json"
+let urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json"
+
+let ServiceApiRequest = (url, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.onload = callback;
@@ -76,8 +76,7 @@ window.listUser = {
         if (b["stats"]["exercises"]) {
           nombre2 = b['stats']['exercises'][OrderBy]
         }
-        console.log(nombre1)
-        console.log(nombre2)
+ 
 
       }
 
@@ -121,12 +120,22 @@ window.listProgress = {
     return listProgress.progress;
   },
   getIntro: (id, courses) => {
-    if (typeof listProgress.progress[id].intro !== "undefined") {
-      for (let course in courses) {
-        if (listProgress.progress[id][course].lenght !== 0)
+    // if (typeof listProgress.progress[id]['intro'] !== "undefined") {
+     // console.log(id)
+
+      
+     
+    for (let course in courses) {
+     
+      if (typeof listProgress.progress[id][course] !== "undefined") {
+       
+       // if (listProgress.progress[id][course].lenght !== 0) {
           return listProgress.progress[id][course];
+
+       // }
       }
     }
+    //}
     return { percent: 0 }
   }
 }
