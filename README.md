@@ -92,7 +92,7 @@ Para acceder a la página se debe ingresar a la página [Laboratoria](https://fl
 un logging, en ella se debe acceder con el usuario y contraseña.
 Luego aparecera la opcion para ingresar a la sede donde quiere estar, despues de eso contamos con una tercera vista en la que se divisan los cohorts y se cuenta con un menu lateral para el acceso al usuario a otros enlaces.
 
-Finalmente la vista de primera página
+Finalmente, para lograr el objetivo principal de este proyecto creamos esta página web pensando en  que esta permita a las Training Managers de Laboratoria visualizar el progreso de cada una de las estudiantes de forma fácil y rápida, logrando así agilizar los tiempos a la hora de revisar los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje.
 
 ## Contacto
 

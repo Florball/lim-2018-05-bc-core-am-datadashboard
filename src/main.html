@@ -26,8 +26,8 @@
     </ul>
   </div>
   <!-- lista de cohorts -->
-  <div class="second-tab hide" id="second-tab" >
-    <header id="main-menu " class="main-menu">
+  <div class="second-tab hide" id="second-tab">
+    <aside id="main-menu " class="main-menu">
       <a href="http://talento.laboratoria.la/">
         <img class="logo" src="https://preview.ibb.co/doqLs8/Laboratoria_RGB_logo_01.png" alt="Laboratoria_RGB_logo_01" title="Laboratoria.la">
       </a>
@@ -38,20 +38,19 @@
       <h2 class="menu-butom" id="option3">ESTUDIANTES</h2>
       <h2 class="menu-butom" id="option4">COACHES</h2>
       <h2 class="menu-butom" id="option5">GENERAL</h2>
-    </header>
-  <section class="list-cohorts hide" id = "side-list">
-    <div >
+    </aside>
+    <section class="list-cohorts hide" id="side-list">
       <ul id="lista-cohorts" class="li-list" type="square"></ul>
-    </div>
-  </section>
+    </section>
   </div>
   <!-- lista de estudiantes,buscador y selector por orden-->
   <div class="list-student hide" id="third-tab">
-    <section>
-    <input type="search" placeholder="Buscar estudiante" class="search" id="my-search" >
+    <div class="search-margin">
+      <input type="search" placeholder="Buscar estudiante" class="search" id="my-search">
+    </div>
     <ul id="list-students" class="student"></ul>
-  </section>
-  <section>
+    <button class="order-abc" id="desc">DESC</button>
+    <button class="order-abc" id="asc">ASC</button>
     <select name="orderby" class="orderBy" id="orderBy">
       <option value="">Selecciona una opción</option>
       <option value="stats.percent"> Porcentaje General</option>
@@ -61,15 +60,8 @@
       <option value="stats.quizzes.percent"> Quizz Porcentaje</option>
       <option value="stats.quizzes.scoreAvg"> Quizz Promedio Score</option>
     </select>
-    <button class="order-abc" id="asc">ASC</button>
-    <button class="order-abc" id="desc">DESC</button>
-    <div id="progress" class="progress"></div>
-
-    <div id="progress-detail" class="progress-detail">
-    
-    </div>
-  </section>
-  </div>  
+    <div id="progress-detail" class="progress-detail"></div>
+  </div>
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script src="main.js"></script>
