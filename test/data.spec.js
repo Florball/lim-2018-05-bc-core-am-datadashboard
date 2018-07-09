@@ -23,8 +23,7 @@ describe('data', () => {
     const { users, progress } = fixtures;
 
     it('debería retornar arreglo de usuarios con propiedad stats', () => {
-  
-     // console.log(listCohort.getCourses())
+      
       const processed = computeUsersStats(users, progress, cohort.coursesIndex);
         
       assert.equal(users.length, processed.length);

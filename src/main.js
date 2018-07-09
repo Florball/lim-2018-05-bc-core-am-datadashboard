@@ -89,8 +89,9 @@ const listOfProgress = () => {
 ulStudents.addEventListener("click", (event) => {
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
-    progressDetail.innerHTML = ''
+    progressDetail.innerHTML = '';
     let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+
     Lis = findUsers(Lis, event.target.id)
     const elementLi = document.createElement('span');
     elementLi.innerHTML = "Porcentaje Total : " + Lis.percent;

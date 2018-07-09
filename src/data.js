@@ -46,7 +46,10 @@ window.findUsers = (listusers, id) => {
   let list = listusers.find((user) => {
     return user.id == id;
   });
-  return list.stats;
+  if (list.stats!=="undefined"){
+    return list.stats;
+  };
+  return {}
 };
 window.processCohortData = (options) => {
   return {};

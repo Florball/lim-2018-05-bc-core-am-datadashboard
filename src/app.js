@@ -104,42 +104,52 @@ window.listProgress = {
     return listProgress.progress;
   },
   getIntro: (id, courses) => {
-    for (let course in courses) {
-      if (typeof listProgress.progress[id][course] !== "undefined") {
-        return listProgress.progress[id][course];
-      }
-    }
-    return { percent: 0 }
-  }
-}
+    if (courses !== {}) {
+      for (let course in courses) {
+        if (listProgress.progress[id] !== {}) {
+          if (listProgress.progress[id][course] !== {}) {
+            if (typeof listProgress.progress[id][course] !== "undefined") {
+              return listProgress.progress[id][course];
+            };
+          };
+        };
+      };
+      return { percent: 0 }
+    };
+  },
+};
 let getPart = (intro) => {
-  let list = []
-  for (let units in intro) {
-    if (units == "units") {
-      for (let unit in intro[units]) {
-        for (let parts in intro[units][unit]) {
-          if (parts == "parts") {
-            list.push(intro[units][unit][parts])
-          }
-        }
-      }
-    }
-  }
-  return list
-}
+  let list = [];
+  if (intro !== {}) {
+    for (let units in intro) {
+      if (units == "units") {
+        for (let unit in intro[units]) {
+          for (let parts in intro[units][unit]) {
+            if (parts == "parts") {
+              list.push(intro[units][unit][parts]);
+            };
+          };
+        };
+      };
+    };
+    return list;
+  };
+};
 const getExersicesById = (id, courses) => {
   let totalExercises = 0;
   let completedExercises = 0;
   let intro = listProgress.getIntro(id, courses);
   let parts = getPart(intro).map(parts => {
-    for (let part in parts) {
-      for (let elem in parts[part]) {
-        if (elem == "exercises") {
-          const exercises = parts[part][elem];
-          for (let exercise in exercises) {
-            totalExercises++;
-            if (exercises[exercise].completed === 1) {
-              completedExercises++;
+    if (parts !== {}) {
+      for (let part in parts) {
+        for (let elem in parts[part]) {
+          if (elem == "exercises") {
+            const exercises = parts[part][elem];
+            for (let exercise in exercises) {
+              totalExercises++;
+              if (exercises[exercise].completed === 1) {
+                completedExercises++;
+              };
             };
           };
         };
@@ -159,11 +169,12 @@ division = (numerador, denominador) => {
   };
   return total;
 };
-  getReadsById = (id, courses) => {
-    let totalReads = 0;
-    let completedReads = 0;
-    const intro = listProgress.getIntro(id, courses);
-    const parts = getPart(intro).map(parts => {
+getReadsById = (id, courses) => {
+  let totalReads = 0;
+  let completedReads = 0;
+  const intro = listProgress.getIntro(id, courses);
+  const parts = getPart(intro).map(parts => {
+    if (parts !== {}) {
       for (let part in parts) {
         if (parts[part]["type"] === "read") {
           totalReads++;
@@ -172,27 +183,30 @@ division = (numerador, denominador) => {
           };
         };
       };
-    });
-    const reads = new Object();
-    reads.total = totalReads;
-    reads.completed = completedReads;
-    reads.percent = Math.round(division(completedReads, totalReads) * 100);
-    return reads;
-  }
+    };
+  });
+  const reads = new Object();
+  reads.total = totalReads;
+  reads.completed = completedReads;
+  reads.percent = Math.round(division(completedReads, totalReads) * 100);
+  return reads;
+};
 getQuizzesById = (id, courses) => {
   let totalQuizzes = 0;
   let completedQuizzes = 0;
   let scoreSumQuizzes = 0;
   const intro = listProgress.getIntro(id, courses);
   const parts = getPart(intro).map(parts => {
-    for (let part in parts) {
-      if (parts[part]["type"] === "quiz") {
-        totalQuizzes++;
-        if (parts[part]["completed"] === 1) {
-          completedQuizzes++;
-        };
-        if ((parts[part]).hasOwnProperty("score")) {
-          scoreSumQuizzes += parts[part].score;
+    if (parts !== {}) {
+      for (let part in parts) {
+        if (parts[part]["type"] === "quiz") {
+          totalQuizzes++;
+          if (parts[part]["completed"] === 1) {
+            completedQuizzes++;
+          };
+          if ((parts[part]).hasOwnProperty("score")) {
+            scoreSumQuizzes += parts[part].score;
+          };
         };
       };
     };
