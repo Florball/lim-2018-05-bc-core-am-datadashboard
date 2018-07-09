@@ -1,117 +1,100 @@
-const urlCohort = "../data/cohorts.json"
-const urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json"
-const urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json"
-//funcion para obtener datos json
-const ServiceApiRequest = (url, callback) => {
+let urlCohort = "../data/cohorts.json";
+let urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json";
+let urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json";
+let ServiceApiRequest = (url, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.onload = callback;
   xhr.send();
-}
-
+};
 const getCohorts = () => {
   data1 = JSON.parse(event.target.responseText);
-  return data1
-}
-
+  return data1;
+};
 const getUsers = () => {
   data2 = JSON.parse(event.target.responseText);
-  return data2
-}
+  return data2;
+};
 const getProgress = () => {
   let data3 = JSON.parse(event.target.responseText);
-  return data3
-}
-
-//oteniendo courses
+  return data3;
+};
 window.listCohort = {
   cohorts: [],
   setCohort: (data) => {
-    listCohort.cohorts = data
+    listCohort.cohorts = data;
   },
   getNewCohort: () => {
-    return listCohort.cohorts
+    return listCohort.cohorts;
   },
   getCourses: () => {
     let courses = {};
     let getIntro = listCohort.cohorts.map(cohort => {
       if (cohort.id == "lim-2018-03-pre-core-pw") {
-        courses = cohort.coursesIndex
-      }
-    })
-    return courses
-  }
-}
-
+        courses = cohort.coursesIndex;
+      };
+    });
+    return courses;
+  },
+};
 window.listUser = {
   users: [],
   setUsers: (data) => {
-    listUser.users = data
+    listUser.users = data;
   },
   getNewUsers: () => {
-    return listUser.users
+    return listUser.users;
   },
   sort: (OrderBy, OrderDirection, level = 1) => {
     listUser.users.sort(function (a, b) {
-      let nombre1 = ''
-      let nombre2 = ''
+      let nombre1 = '';
+      let nombre2 = '';
       if (level == 1) {
-        let labelOne = a[OrderBy]
-        let labelTwo = b[OrderBy]
-        nombre1 = labelOne.toLowerCase()
-        nombre2 = labelTwo.toLowerCase()
-
-      }
+        let labelOne = a[OrderBy];
+        let labelTwo = b[OrderBy];
+        nombre1 = labelOne.toLowerCase();
+        nombre2 = labelTwo.toLowerCase();
+      };
       if (level == 2) {
-        nombre1 = a.stats[OrderBy]
-        nombre2 = b.stats[OrderBy]
-      }
-
+        nombre1 = a.stats[OrderBy];
+        nombre2 = b.stats[OrderBy];
+      };
       if (level == 3) {
-        nombre1 = a.stats.exercises
+        nombre1 = a.stats.exercises;
         if (a["stats"]["exercises"]) {
-          nombre1 = a["stats"]["exercises"][OrderBy]
-        }
-
+          nombre1 = a["stats"]["exercises"][OrderBy];
+        };
         if (b["stats"]["exercises"]) {
-          nombre2 = b['stats']['exercises'][OrderBy]
-        }
-        console.log(nombre1)
-        console.log(nombre2)
-
-      }
-
+          nombre2 = b['stats']['exercises'][OrderBy];
+        };
+      };
       if (level == 4) {
-        nombre1 = a.stats.reads[OrderBy]
-        nombre2 = b.stats.reads[OrderBy]
-      }
-
+        nombre1 = a.stats.reads[OrderBy];
+        nombre2 = b.stats.reads[OrderBy];
+      };
       if (level == 5) {
-        nombre1 = a.stats.quizzes[OrderBy]
-        nombre2 = b.stats.quizzes[OrderBy]
-      }
-
+        nombre1 = a.stats.quizzes[OrderBy];
+        nombre2 = b.stats.quizzes[OrderBy];
+      };
       if (OrderDirection == 'asc') {
         if (nombre1 > nombre2) {
           return 1;
-        }
+        };
         if (nombre1 < nombre2) {
           return -1;
-        }
-      }
+        };
+      };
       if (OrderDirection == 'desc') {
         if (nombre1 < nombre2) {
           return 1;
-        }
+        };
         if (nombre1 > nombre2) {
           return -1;
-        }
-      }
-
-
-    })
-  }
-}
+        };
+      };
+    });
+  },
+};
 window.listProgress = {
   progress: [],
   setProgres: (progress) => {
@@ -121,107 +104,118 @@ window.listProgress = {
     return listProgress.progress;
   },
   getIntro: (id, courses) => {
-    if (typeof listProgress.progress[id].intro !== "undefined") {
+    if (courses !== {}) {
       for (let course in courses) {
-        if (listProgress.progress[id][course].lenght !== 0)
-          return listProgress.progress[id][course];
-      }
-    }
-    return { percent: 0 }
-  }
-}
+        if (listProgress.progress[id] !== {}) {
+          if (listProgress.progress[id][course] !== {}) {
+            if (typeof listProgress.progress[id][course] !== "undefined") {
+              return listProgress.progress[id][course];
+            };
+          };
+        };
+      };
+      return { percent: 0 }
+    };
+  },
+};
 let getPart = (intro) => {
-  let list = []
-  for (let units in intro) {
-    if (units == "units") {
-      for (let unit in intro[units]) {
-        for (let parts in intro[units][unit]) {
-          if (parts == "parts") {
-            list.push(intro[units][unit][parts])
-          }
-        }
-      }
-    }
-  }
-  return list
-}
+  let list = [];
+  if (intro !== {}) {
+    for (let units in intro) {
+      if (units == "units") {
+        for (let unit in intro[units]) {
+          for (let parts in intro[units][unit]) {
+            if (parts == "parts") {
+              list.push(intro[units][unit][parts]);
+            };
+          };
+        };
+      };
+    };
+    return list;
+  };
+};
 const getExersicesById = (id, courses) => {
-  let totalExercises = 0
-  let completedExercises = 0
-  let intro = listProgress.getIntro(id, courses)
+  let totalExercises = 0;
+  let completedExercises = 0;
+  let intro = listProgress.getIntro(id, courses);
   let parts = getPart(intro).map(parts => {
-    for (let part in parts) {
-      for (let elem in parts[part]) {
-        if (elem == "exercises") {
-          const exercises = parts[part][elem]
-          for (let exercise in exercises) {
-            totalExercises++
-            if (exercises[exercise].completed === 1) {
-              completedExercises++
-            }
-          }
-        }
-      }
-
-    }
-  })
+    if (parts !== {}) {
+      for (let part in parts) {
+        for (let elem in parts[part]) {
+          if (elem == "exercises") {
+            const exercises = parts[part][elem];
+            for (let exercise in exercises) {
+              totalExercises++;
+              if (exercises[exercise].completed === 1) {
+                completedExercises++;
+              };
+            };
+          };
+        };
+      };
+    };
+  });
   const exercises = new Object();
   exercises.total = totalExercises;
   exercises.completed = completedExercises;
-  exercises.percent = Math.round(division(completedExercises, totalExercises) * 100)
+  exercises.percent = Math.round(division(completedExercises, totalExercises) * 100);
   return exercises;
-}
+};
 division = (numerador, denominador) => {
-  let total = 0
+  let total = 0;
   if (numerador !== 0 && denominador !== 0) {
-    total = numerador / denominador
-  }
-  return total
-},
-  getReadsById = (id, courses) => {
-    let totalReads = 0;
-    let completedReads = 0;
-    const intro = listProgress.getIntro(id, courses);
-    const parts = getPart(intro).map(parts => {
+    total = numerador / denominador;
+  };
+  return total;
+};
+getReadsById = (id, courses) => {
+  let totalReads = 0;
+  let completedReads = 0;
+  const intro = listProgress.getIntro(id, courses);
+  const parts = getPart(intro).map(parts => {
+    if (parts !== {}) {
       for (let part in parts) {
         if (parts[part]["type"] === "read") {
           totalReads++;
           if (parts[part]["completed"] === 1) {
             completedReads++;
-          }
-        }
-      }
-    })
-    const reads = new Object();
-    reads.total = totalReads;
-    reads.completed = completedReads;
-    reads.percent = Math.round(division(completedReads, totalReads) * 100)
-    return reads;
-  }
+          };
+        };
+      };
+    };
+  });
+  const reads = new Object();
+  reads.total = totalReads;
+  reads.completed = completedReads;
+  reads.percent = Math.round(division(completedReads, totalReads) * 100);
+  return reads;
+};
 getQuizzesById = (id, courses) => {
   let totalQuizzes = 0;
   let completedQuizzes = 0;
   let scoreSumQuizzes = 0;
   const intro = listProgress.getIntro(id, courses);
   const parts = getPart(intro).map(parts => {
-    for (let part in parts) {
-      if (parts[part]["type"] === "quiz") {
-        totalQuizzes++;
-        if (parts[part]["completed"] === 1) {
-          completedQuizzes++;
-        }
-        if ((parts[part]).hasOwnProperty("score")) {
-          scoreSumQuizzes += parts[part].score;
-        }
-      }
-    }
-  })
+    if (parts !== {}) {
+      for (let part in parts) {
+        if (parts[part]["type"] === "quiz") {
+          totalQuizzes++;
+          if (parts[part]["completed"] === 1) {
+            completedQuizzes++;
+          };
+          if ((parts[part]).hasOwnProperty("score")) {
+            scoreSumQuizzes += parts[part].score;
+          };
+        };
+      };
+    };
+  });
   const quizzes = new Object();
   quizzes.total = totalQuizzes;
   quizzes.completed = completedQuizzes;
   quizzes.percent = Math.round(division(completedQuizzes, totalQuizzes) * 100);
   quizzes.scoreSum = scoreSumQuizzes;
   quizzes.scoreAvg = Math.round(division(scoreSumQuizzes, completedQuizzes));
-
   return quizzes;
-}
+};
