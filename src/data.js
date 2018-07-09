@@ -49,7 +49,7 @@ window.findUsers = (listusers, id) => {
   if (list.stats!=="undefined"){
     return list.stats;
   };
-  return {}
+  return {};
 };
 window.processCohortData = (options) => {
   return {};
