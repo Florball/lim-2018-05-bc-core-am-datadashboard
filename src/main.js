@@ -68,11 +68,11 @@ ulCohorts.addEventListener("click", (event) => {
 });
 const filter = (value) => {
   ServiceApiRequest(urlUser, () => {
-    listUser.setUsers(filterUsers(getUsers(), value))
-    ulStudents.innerHTML = ''
+    listUser.setUsers(filterUsers(getUsers(), value));
+    ulStudents.innerHTML = '';
     listUser.getNewUsers().forEach(student => {
       if (student.role == "student") {
-        createList("list-students", 'elem-student', student, student.name)
+        createList("list-students", 'elem-student', student, student.name);
       };
     });
   });
@@ -83,16 +83,16 @@ search.addEventListener("keyup", (event) => {
 const listOfProgress = () => {
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
-    computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+    computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
   });
 };
 ulStudents.addEventListener("click", (event) => {
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
     progressDetail.innerHTML = '';
-    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
 
-    Lis = findUsers(Lis, event.target.id)
+    Lis = findUsers(Lis, event.target.id);
     const elementLi = document.createElement('span');
     elementLi.innerHTML = "Porcentaje Total : " + Lis.percent;
     progressDetail.appendChild(elementLi);
@@ -142,7 +142,7 @@ ulStudents.addEventListener("click", (event) => {
 });
 document.getElementById('desc').addEventListener("click", (event) => {
   let orderBy = document.getElementById('orderBy').value;
-  let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses())
+  let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
   sortUsers(user, orderBy, 'desc');
   ulStudents.innerHTML = '';
   user.forEach(student => {
