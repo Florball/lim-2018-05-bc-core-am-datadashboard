@@ -50,7 +50,7 @@
       <button class="order-abc" id="desc">DESC</button>
       <button class="order-abc" id="asc">ASC</button>
       <select name="orderby" class="orderBy" id="orderBy">
-        <option value="">SELECCIONA UNA OPCIÓN</option>
+        <option value="">SELECCIONAR ORDEN</option>
         <option value="stats.percent"> Porcentaje General</option>
         <option value="name"> Nombre Porcentaje</option>
         <option value="stats.exercises.percent"> Exercises Porcentaje</option>
@@ -59,8 +59,11 @@
         <option value="stats.quizzes.scoreAvg"> Quizz Promedio Score</option>
       </select>
     </div>
-    <ul id="list-students" class="student"><li class="style-for-student"></li></ul>
-    <div id="progress-detail" class="progress-detail"></div>
+    <div class="student-progress">
+      <div class="style-for-list"></div>
+      <div id="progress-detail" class="progress-detail"></div>
+      <ul id="list-students" class="student"></ul>
+    </div>
   </div>
   <script src="data.js"></script>
   <script src="app.js"></script>
