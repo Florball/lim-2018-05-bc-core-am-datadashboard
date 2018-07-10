@@ -35,8 +35,8 @@ let createList = (ulId, classLi, element, html) => {
   elementLi.innerHTML = html;
   list.appendChild(elementLi);
 };
-window.options = {
-  cohort:null,
+const options = {
+  cohort: [],
   cohortData: {
     users: null,
     progress: null,
@@ -51,13 +51,17 @@ const listOfCohorts = (id) => {
     listCohort.setCohort(getCohorts());
     listCohort.getNewCohort().forEach(cohort => {
       if (cohort.id.startsWith(id)) {
+        options.cohort.push(cohort)
         createList("lista-cohorts", 'elem-cohort', cohort, cohort.id);
       };
     });
+    console.log(options)
   });
 };
+
 menuSedes.addEventListener("click", (event) => {
   listOfCohorts(event.target.id);
+
 });
 const listOfStudent = (n) => {
   ServiceApiRequest(urlUser, () => {
@@ -73,7 +77,14 @@ const listOfStudent = (n) => {
   });
 };
 ulCohorts.addEventListener("click", (event) => {
+  options.cohort.forEach(cohort => {
+    if (cohort.id === event.target.id) {
+      options.cohort = cohort;
+      console.log(options)
+    }
+  });
   listOfStudent(event.target.id);
+
   listOfProgress();
 });
 const filter = (value) => {
@@ -107,16 +118,16 @@ ulStudents.addEventListener("click", (event) => {
     elementLi.innerHTML = "Porcentaje Total : " + Lis.percent;
     progressDetail.appendChild(elementLi);
     const elementLi2 = document.createElement('span');
-    elementLi2.innerHTML = "\n Ejercicios ";
+    elementLi2.innerHTML = "<p>" + "Ejercicios "+ "</p>";
     progressDetail.appendChild(elementLi2);
     const elementLi3 = document.createElement('li');
     elementLi3.innerHTML = "Total de Ejercicios: " + Lis.exercises.total;
     progressDetail.appendChild(elementLi3);
     const elementLi4 = document.createElement('li');
-    elementLi4.innerHTML = "Ejercicios Completados: " + Lis.exercises.completed;
+    elementLi4.innerHTML = "Total Completados: " + Lis.exercises.completed;
     progressDetail.appendChild(elementLi4);
     const elementLi5 = document.createElement('li');
-    elementLi5.innerHTML = "Porcentaje de Ejercicios Completados" + Lis.exercises.percent;
+    elementLi5.innerHTML = "Porcentaje Completados:" + Lis.exercises.percent;
     progressDetail.appendChild(elementLi5);
     const elementLi6 = document.createElement('span');
     elementLi6.innerHTML = "Reads: ";
@@ -125,10 +136,10 @@ ulStudents.addEventListener("click", (event) => {
     elementLi7.innerHTML = "Total de Reads: " + Lis.reads.total;
     progressDetail.appendChild(elementLi7);
     const elementLi8 = document.createElement('li');
-    elementLi8.innerHTML = "Reads Completadas: " + Lis.reads.completed;
+    elementLi8.innerHTML = "Total Completados: " + Lis.reads.completed;
     progressDetail.appendChild(elementLi8);
     const elementLi9 = document.createElement('li');
-    elementLi9.innerHTML = "Porcentaje de Reads Completadas: " + Lis.reads.percent;
+    elementLi9.innerHTML = "Porcentaje Completados: " + Lis.reads.percent;
     progressDetail.appendChild(elementLi9);
     const elementLi10 = document.createElement('span');
     elementLi10.innerHTML = "Quizzes: ";
@@ -137,18 +148,17 @@ ulStudents.addEventListener("click", (event) => {
     elementLi11.innerHTML = "Total de Quizzes: " + Lis.quizzes.total;
     progressDetail.appendChild(elementLi11);
     const elementLi12 = document.createElement('li');
-    elementLi12.innerHTML = "Lecturas Quizzes: " + Lis.quizzes.completed;
+    elementLi12.innerHTML = "Total Completados: " + Lis.quizzes.completed;
     progressDetail.appendChild(elementLi12);
     const elementLi13 = document.createElement('li');
-    elementLi13.innerHTML = "Porcentaje de Quizzes Completados: " + Lis.quizzes.percent;
+    elementLi13.innerHTML = "Porcentaje Completados: " + Lis.quizzes.percent;
     progressDetail.appendChild(elementLi13);
     const elementLi14 = document.createElement('li');
-    elementLi14.innerHTML = "Puntaje Total de Quizzes Completados: " + Lis.quizzes.scoreSum;
+    elementLi14.innerHTML = "Puntaje Total: " + Lis.quizzes.scoreSum;
     progressDetail.appendChild(elementLi14);
     const elementLi15 = document.createElement('li');
-    elementLi15.innerHTML = "Promedio de Quizzes Completados: " + Lis.quizzes.scoreAvg;
+    elementLi15.innerHTML = "Promedio de Puntaje: " + Lis.quizzes.scoreAvg;
     progressDetail.appendChild(elementLi15);
-   // processCohortData(options);
   });
 });
 document.getElementById('desc').addEventListener("click", (event) => {
