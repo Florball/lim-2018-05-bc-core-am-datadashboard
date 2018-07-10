@@ -14,8 +14,8 @@
 <body>
   <!-- página de bienvenida -->
   <div class="first-tab show" id="first-tab">
-    <p class="welcome">Bienvenid@ le desea el grupo Laboratoria!   </p>
-    <p>Elija la sede:</p>
+    <p class="welcome">Bienvenid@ le desea el grupo Laboratoria!</p>
+    <p class="welcome option-sede">Elija la sede:</p>
     <ul class="menu-sedes" id="menu-sedes">
       <li class="place" id="lim">LIMA</li>
       <li class="place" id="scl">SANTIAGO</li>
@@ -40,26 +40,26 @@
       <h2 class="menu-butom" id="option5">GENERAL</h2>
     </aside>
     <section class="list-cohorts hide" id="side-list">
-      <ul id="lista-cohorts" class="li-list" type="square"></ul>
+      <ul id="lista-cohorts" class="li-list"></ul>
     </section>
   </div>
   <!-- lista de estudiantes,buscador y selector por orden-->
   <div class="list-student hide" id="third-tab">
     <div class="search-margin">
       <input type="search" placeholder="Buscar estudiante" class="search" id="my-search">
+      <button class="order-abc" id="desc">DESC</button>
+      <button class="order-abc" id="asc">ASC</button>
+      <select name="orderby" class="orderBy" id="orderBy">
+        <option value="">SELECCIONA UNA OPCIÓN</option>
+        <option value="stats.percent"> Porcentaje General</option>
+        <option value="name"> Nombre Porcentaje</option>
+        <option value="stats.exercises.percent"> Exercises Porcentaje</option>
+        <option value="stats.reads.percent"> Reads Porcentaje</option>
+        <option value="stats.quizzes.percent"> Quizz Porcentaje</option>
+        <option value="stats.quizzes.scoreAvg"> Quizz Promedio Score</option>
+      </select>
     </div>
     <ul id="list-students" class="student"></ul>
-    <button class="order-abc" id="desc">DESC</button>
-    <button class="order-abc" id="asc">ASC</button>
-    <select name="orderby" class="orderBy" id="orderBy">
-      <option value="">Selecciona una opción</option>
-      <option value="stats.percent"> Porcentaje General</option>
-      <option value="name"> Nombre Porcentaje</option>
-      <option value="stats.exercises.percent"> Exercises Porcentaje</option>
-      <option value="stats.reads.percent"> Reads Porcentaje</option>
-      <option value="stats.quizzes.percent"> Quizz Porcentaje</option>
-      <option value="stats.quizzes.scoreAvg"> Quizz Promedio Score</option>
-    </select>
     <div id="progress-detail" class="progress-detail"></div>
   </div>
   <script src="data.js"></script>
