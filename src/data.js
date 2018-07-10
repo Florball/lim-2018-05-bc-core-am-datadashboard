@@ -1,12 +1,15 @@
 window.computeUsersStats = (users, progress, courses) => {
+  listProgress.setProgres(progress);
   const allUsers = users.map(usersWithStats => {
-    usersWithStats.stats = {
+  if (usersWithStats!=={}){
+    usersWithStats.stats = {  
       percent: listProgress.getIntro(usersWithStats.id, courses).percent,
       exercises: getExersicesById(usersWithStats.id, courses),
       reads: getReadsById(usersWithStats.id, courses),
       quizzes: getQuizzesById(usersWithStats.id, courses),
     }
     return usersWithStats;
+  }
   });
   return allUsers;
 };
@@ -42,15 +45,12 @@ window.filterUsers = (users, search) => {
   });
   return list;
 };
-window.findUsers = (listusers, id) => {
-  let list = listusers.find((user) => {
-    return user.id == id;
-  });
-  if (list.stats!=="undefined"){
-    return list.stats;
-  };
-  return {};
-};
+
 window.processCohortData = (options) => {
-  return {};
+  let userStudents = computeUsersStats(options.cohortData.users,options.cohortData.progress,options.cohort.coursesIndex);
+  userStudents = sortUsers(userStudents,options.orderBy, options.orderDirection);
+  if (options.search !== '') {
+    students = filterUsers(students, options.search);
+  }
+  return userStudents;
 };

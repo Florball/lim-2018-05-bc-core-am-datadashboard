@@ -35,6 +35,16 @@ let createList = (ulId, classLi, element, html) => {
   elementLi.innerHTML = html;
   list.appendChild(elementLi);
 };
+window.options = {
+  cohort:null,
+  cohortData: {
+    users: null,
+    progress: null,
+  },
+  orderBy: 'name',
+  orderDirection: 'ASC',
+  search: ''
+}
 const listOfCohorts = (id) => {
   ServiceApiRequest(urlCohort, () => {
     hideTabs(firstTab, secondTab, sectionList)
@@ -138,6 +148,7 @@ ulStudents.addEventListener("click", (event) => {
     const elementLi15 = document.createElement('li');
     elementLi15.innerHTML = "Promedio de Quizzes Completados: " + Lis.quizzes.scoreAvg;
     progressDetail.appendChild(elementLi15);
+   // processCohortData(options);
   });
 });
 document.getElementById('desc').addEventListener("click", (event) => {

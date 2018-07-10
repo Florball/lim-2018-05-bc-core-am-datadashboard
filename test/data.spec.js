@@ -23,8 +23,8 @@ describe('data', () => {
     const { users, progress } = fixtures;
 
     it('debería retornar arreglo de usuarios con propiedad stats', () => {
-      
-      const processed = computeUsersStats(users, progress, cohort.coursesIndex);
+
+      const processed = computeUsersStats(users, progress, courses);
         
       assert.equal(users.length, processed.length);
 
@@ -59,6 +59,7 @@ describe('data', () => {
           total: 3,
           completed: 2,
           percent: 67,
+          scoreSum:57,
           scoreAvg: 29,
         });
       });
@@ -76,6 +77,10 @@ describe('data', () => {
   });
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
+
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const courses = Object.keys(cohort.coursesIndex);
+    const { users, progress } = fixtures;
 
     it('debería retornar arreglo de usuarios ordenado por nombre ASC');
     it('debería retornar arreglo de usuarios ordenado por nombre DESC');
