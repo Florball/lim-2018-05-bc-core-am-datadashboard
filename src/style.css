@@ -96,6 +96,9 @@ font-family: 'Bitter', serif;
 margin-top: 4%;
 text-align: center;
 }
+.option-sede {
+  margin-top: 1%;
+}
 .menu-sedes {
   background: rgba(1, 0, 0, 0.4);
   border-radius: 10px;
@@ -129,7 +132,6 @@ text-align: center;
   margin-left: 4.5%;
   margin-top: 10%;
   padding: 1%;
-  width: 90%;
   height: auto;
 }
 .user-ale {
@@ -145,7 +147,6 @@ text-align: center;
   margin-bottom: 15%;
 }
 .main-menu {
-  background: none;
   border-right-style: solid;
   border-color: #ffe521;
   border-width: 4%;
@@ -159,19 +160,20 @@ text-align: center;
 .menu-butom {
   background-color: #ffe521;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-  font-size: 150%;
+  font-size: auto;
   font-family: 'Open Sans', sans-serif;
+  line-height: 60px;
+  margin-top: 0.5%; 
+  overflow: hidden;
   padding-left: 20px;
   padding-right: 20px;
   text-align: center;
-  margin-top: 0.5%; 
   transition: 0.3s;
-  line-height: 60px;
 }
 .menu-butom:hover {
   background-color:  #fffc3df6;
 }
-.menu-butom:active {
+.menu-butom:focus {
   background-color:  #fffc3df6;
 }
 #option1 {
@@ -186,25 +188,25 @@ text-align: center;
 
 /* LISTA DE COHORTS */
 .list-cohorts {
+  display: block;
   font-size: 20px;
   font-family: 'Bitter', serif;
-  text-transform: uppercase;
   float: right;
-  z-index: 2;
+  text-transform: uppercase;
   cursor: pointer;
   line-height: 30px;
   padding-top: 3%;
   margin: auto;
   width: 62%;
-  display: inline;
+  z-index: 2;
 }
 .li-list {
+  list-style-type: square;
   padding-bottom: 2.8%;
   padding-top: 2.8%;
   width: 100%;
 }
 .elem-cohort {
-  /* list-style-type: none; */
   margin-right: 30%;
   padding-top: 1.5%;
   padding-bottom: 1.5%;
@@ -214,10 +216,6 @@ text-align: center;
 }
 .elem-cohort:hover {
   background-color: rgb(86, 248, 154);
-}
-/* contiene lista de estudiantes y el buscador corresporndiente */
-.list-student {
-  width: 100%;
 }
 .search {
   font-family: 'Open Sans', sans-serif;
@@ -241,27 +239,6 @@ text-align: center;
   padding-top: 3%;
   width: 100%;
 }
-.student {
-  color: #000;
-  display: inline-block;
-  font-size: 20px;
-  list-style-type: none;
-}
-.elem-student {
-  display: inline-block;
-  font-family: 'Bitter', serif;
-  margin-left: 22%;
-  margin-right: 2%;
-  padding-top: 1.5%;
-  padding-bottom: 1.5%;
-  padding-left: 3%;
-  padding-right: 9px;
-  transition: 0.1s;
-  width: 27.5%
-}
-.elem-student:hover {
-  background-color: rgb(86, 248, 154);
-}
 .order-abc {
   background-color: transparent;
   border: 2.7px solid rgb(86, 248, 154);
@@ -271,7 +248,10 @@ text-align: center;
   font-weight: 600;
   font-size: 17px;
   float: right;
-  margin: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  margin-top: 0;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
   padding-left: 0.7%;
@@ -297,16 +277,21 @@ text-align: center;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 100%;
   float: right;
   overflow: hidden;
-  margin: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  margin-top: 0;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
   padding-left: 0.7%;
-  text-overflow: ellipsis;
+  padding-right: 0.5%;
+  text-align: center;
+  text-overflow:ellipsis;
   width: 19%;
-  white-space: nowrap;
+  white-space: pre-line;
 }
 .orderBy:hover {
   background-color: rgba(134, 255, 185, 0.966);
@@ -314,6 +299,33 @@ text-align: center;
   color: rgb(58, 35, 35);
   padding-top: 0.4%;
   padding-bottom: 0.6%;
+}
+/* contiene lista de estudiantes y el buscador corresporndiente */
+.list-student {
+  width: 100%;
+}
+.student {
+  color: #000;
+  cursor: pointer;
+  display: block;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.elem-student {
+  display: block;
+  font-family: 'Bitter', serif;
+  margin-left: 22%;
+  margin-right: 2%;
+  list-style-type: square;
+  padding-bottom: 0.8%;
+  padding-top: 0.8%;
+  padding-left: 3%;
+  padding-right: 9px;
+  transition: 0.1s;
+  width: 27.5%
+}
+.elem-student:hover {
+  background-color: rgb(86, 248, 154);
 }
 
 /* tabs */
