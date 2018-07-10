@@ -77,13 +77,25 @@ describe('data', () => {
   });
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
-
     const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
     const courses = Object.keys(cohort.coursesIndex);
     const { users, progress } = fixtures;
-
-    it('debería retornar arreglo de usuarios ordenado por nombre ASC');
+    const processed = computeUsersStats(users, progress, courses);
+    it('debería retornar arreglo de usuarios ordenado por nombre ASC',()=>{
+      const sortexample = sortUsers(processed,'name','ASC');
+      assert.deepEqual(sortexample[0].name,'adriana vizcarra paitán');
+      assert.deepEqual(sortexample[726].name, 'Zurisadai Rosas Aramburú');
+    
+    });
+   
+    
     it('debería retornar arreglo de usuarios ordenado por nombre DESC');
+    // , ()=>{
+    //   let sortexample = sortUsers(processed,'name','DESC')
+    //   assert.deepEqual(sortUsers(processed,), 'Zurisadai Rosas Aramburú')
+
+    // });
+  
     it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC');
     it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC');
     it('debería retornar arreglo de usuarios ordenado por ejercicios completados ASC');

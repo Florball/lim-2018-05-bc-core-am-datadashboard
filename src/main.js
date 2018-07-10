@@ -35,8 +35,8 @@ let createList = (ulId, classLi, element, html) => {
   elementLi.innerHTML = html;
   list.appendChild(elementLi);
 };
-window.options = {
-  cohort:null,
+const options = {
+  cohort: [],
   cohortData: {
     users: null,
     progress: null,
@@ -51,13 +51,17 @@ const listOfCohorts = (id) => {
     listCohort.setCohort(getCohorts());
     listCohort.getNewCohort().forEach(cohort => {
       if (cohort.id.startsWith(id)) {
+        options.cohort.push(cohort)
         createList("lista-cohorts", 'elem-cohort', cohort, cohort.id);
       };
     });
+    console.log(options)
   });
 };
+
 menuSedes.addEventListener("click", (event) => {
   listOfCohorts(event.target.id);
+
 });
 const listOfStudent = (n) => {
   ServiceApiRequest(urlUser, () => {
@@ -73,7 +77,14 @@ const listOfStudent = (n) => {
   });
 };
 ulCohorts.addEventListener("click", (event) => {
+  options.cohort.forEach(cohort => {
+    if (cohort.id === event.target.id) {
+      options.cohort = cohort;
+      console.log(options)
+    }
+  });
   listOfStudent(event.target.id);
+
   listOfProgress();
 });
 const filter = (value) => {
@@ -107,7 +118,7 @@ ulStudents.addEventListener("click", (event) => {
     elementLi.innerHTML = "Porcentaje Total : " + Lis.percent;
     progressDetail.appendChild(elementLi);
     const elementLi2 = document.createElement('span');
-    elementLi2.innerHTML = "\n Ejercicios ";
+    elementLi2.innerHTML = "<p>" + "Ejercicios "+ "</p>";
     progressDetail.appendChild(elementLi2);
     const elementLi3 = document.createElement('li');
     elementLi3.innerHTML = "Total de Ejercicios: " + Lis.exercises.total;
@@ -148,7 +159,6 @@ ulStudents.addEventListener("click", (event) => {
     const elementLi15 = document.createElement('li');
     elementLi15.innerHTML = "Promedio de Quizzes Completados: " + Lis.quizzes.scoreAvg;
     progressDetail.appendChild(elementLi15);
-   // processCohortData(options);
   });
 });
 document.getElementById('desc').addEventListener("click", (event) => {
