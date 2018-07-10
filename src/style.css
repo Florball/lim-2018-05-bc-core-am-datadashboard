@@ -225,19 +225,23 @@ text-align: center;
   border-radius: 55px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   display: inline-block;
-  margin-left: 23%;
+  margin-left: 2%;
   margin-right: 0;
   padding-top: 0.7%;
   padding-bottom: 0.7%;
   padding-left: 1.4%;
   padding-right: 0;
-  width: 27%;
+  width: 35%;
 }
 .search-margin {
-  display: inline-block;
-  margin-bottom: 2%;
+  background:#f0efef;
+  display: block;
+  float: right;
+  margin-bottom: 22%;
+  margin-left: 21%;
   padding-top: 3%;
-  width: 100%;
+  position: fixed;
+  width: 75%;
 }
 .order-abc {
   background-color: transparent;
@@ -290,7 +294,7 @@ text-align: center;
   padding-right: 0.5%;
   text-align: center;
   text-overflow:ellipsis;
-  width: 19%;
+  width: 26%;
   white-space: pre-line;
 }
 .orderBy:hover {
@@ -302,7 +306,11 @@ text-align: center;
 }
 /* contiene lista de estudiantes y el buscador corresporndiente */
 .list-student {
+  margin-top: 0;
   width: 100%;
+}
+.style-for-student {
+  padding-top: 7.6%;
 }
 .student {
   color: #000;
@@ -314,7 +322,7 @@ text-align: center;
 .elem-student {
   display: block;
   font-family: 'Bitter', serif;
-  margin-left: 22%;
+  margin-left: 21%;
   margin-right: 2%;
   list-style-type: square;
   padding-bottom: 0.8%;
@@ -326,6 +334,19 @@ text-align: center;
 }
 .elem-student:hover {
   background-color: rgb(86, 248, 154);
+}
+.progress-detail {
+  display: block;
+  font-family: 'Bitter', serif;
+  font-size: 120%;
+  margin-left: 21%;
+  margin-right: 2%;
+  list-style-type: square;
+  padding-bottom: 1.2%;
+  padding-top: 1.2%;
+  padding-left: 3%;
+  padding-right: 1%;
+  width: 27.5%
 }
 
 /* tabs */
