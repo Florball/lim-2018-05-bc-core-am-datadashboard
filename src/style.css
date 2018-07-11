@@ -376,18 +376,3 @@ text-align: center;
 .show {
   display: block;
 }
-
-/* RESPONSIVE */
-/* @media only screen and (min-device-width: 320px) and (max-device-width : 480px) {
-  .list-cohorts {
-    width: 30%;
-  }
-  .elem-cohort {
-  margin-right: 10%;
-  margin-left: 5%;
-  margin-top: 0;
-  }
-  #option5 {
-    margin-top: 1%;
-  }
-} */
