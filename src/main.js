@@ -108,7 +108,7 @@ const listOfStudent = (n) => {
       options.cohortData.users.push(student);
       if (student.signupCohort === n) {
         if (student.role == "student") {
-          createList("list-students", 'elem-student', student, student.name);
+          createList("list-students", 'elem-student active', student, student.name);
         };
       };
     });
