@@ -175,7 +175,7 @@ let getPart = (intro) => {
   return list;
 };
 window.getExersicesById = (id, courses) => {
-  let totalExercises = 0;
+  let totalExercises = 0; 
   let completedExercises = 0;
   let intro = listProgress.getIntro(id, courses);
   let parts = getPart(intro).map(parts => {

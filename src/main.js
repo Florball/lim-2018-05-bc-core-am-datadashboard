@@ -208,8 +208,9 @@ listOfProgress(event.target.id)
 });
 // funcion para ordenar asc y desc 
 desc.addEventListener("click", (event) => {
-  let orderBy = document.getElementById('orderBy').value;
   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
+  let orderBy = document.getElementById('orderBy').value;
+
   sortUsers(user, orderBy, 'desc');
   ulStudents.innerHTML = '';
   user.forEach(student => {
