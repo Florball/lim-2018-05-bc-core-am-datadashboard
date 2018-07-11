@@ -7,9 +7,9 @@ window.computeUsersStats = (users, progress, courses) => {
         exercises: getExersicesById(usersWithStats.id, courses),
         reads: getReadsById(usersWithStats.id, courses),
         quizzes: getQuizzesById(usersWithStats.id, courses),
-      }
+      };
       return usersWithStats;
-    }
+    };
   });
   return allUsers;
 };
@@ -37,7 +37,7 @@ window.sortUsers = (users, orderBy, orderDireccion) => {
   } else{
    return sortFunction(orderBy, orderDireccion,1);
   };
-  return listUser.getNewUsers()
+  return listUser.getNewUsers();
 };
 window.filterUsers = (users, search) => {
   let list = users.filter((user) => {
@@ -48,11 +48,11 @@ window.filterUsers = (users, search) => {
   return list;
 };
 window.processCohortData = (options) => {
-  const courses = Object.keys (options.cohort.coursesIndex)
+  const courses = Object.keys (options.cohort.coursesIndex);
   let newStudents = computeUsersStats(options.cohortData.users,options.cohortData.progress,courses);
   newStudents = sortUsers(newStudents,options.orderBy, options.orderDirection);
   if (options.search !== '') {
     newStudents = filterUsers(newStudents, options.search);
-   }
+   };
   return newStudents;
 };

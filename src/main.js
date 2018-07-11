@@ -79,7 +79,7 @@ const options = {
   orderBy: 'name',
   orderDirection: 'asc',
   search: ''
-}
+};
 // funcion para listar cohorts
 const listOfCohorts = (id) => {
   ServiceApiRequest(urlCohort, () => {
