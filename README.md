@@ -55,7 +55,8 @@ modificará o mejorará en un prototipo de alta fidelidad.
 
 ### Prototipo de alta fidelidad
 
-El prototipo de baja fidelidad sufrio cambios, en un esfuerzo por hacer una pagina con una mejor experienecia de usuario desarrollamos un prototipo de alta fidelidad, con los cambios que se querían lograr:
+Ocurrieron algunos cambios en el prototipo de baja fidelidad, pensando en el usuario y en hacer una página con una mejor experienecia para el mismo, desarrollamos un prototipo de alta fidelidad, con los cambios que se querían lograr:
+![figma](https://gfycat.com/OrganicUnequaledAmericancreamdraft)
 [Prototipo con Figma](https://www.figma.com/proto/NAmxkjy8ZBlJx8TB5BwkT5Im/laboratoria?node-id=75%3A0&scaling=scale-down)
 
 ## -Experiencia del usuario

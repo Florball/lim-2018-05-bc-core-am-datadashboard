@@ -316,7 +316,7 @@ text-align: center;
 }
 .progress-detail {
   background-color: rgba(134, 255, 185, 0.966);
-  border-radius: 5px;
+  border-radius: 10px;
   display: block;
   font-family: 'Bitter', serif;
   font-size: 120%;
