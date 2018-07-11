@@ -44,14 +44,14 @@ const options = {
   orderBy: 'name',
   orderDirection: 'ASC',
   search: ''
-}
+};
 const listOfCohorts = (id) => {
   ServiceApiRequest(urlCohort, () => {
-    hideTabs(firstTab, secondTab, sectionList)
+    hideTabs(firstTab, secondTab, sectionList);
     listCohort.setCohort(getCohorts());
     listCohort.getNewCohort().forEach(cohort => {
       if (cohort.id.startsWith(id)) {
-        options.cohort.push(cohort)
+        options.cohort.push(cohort);
         createList("lista-cohorts", 'elem-cohort', cohort, cohort.id);
       };
     });
