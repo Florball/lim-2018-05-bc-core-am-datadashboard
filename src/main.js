@@ -22,7 +22,7 @@ const getProgress = () => {
   return data3;
 };
 // declarando variables 
-let btnLogging = document.getElementById('logging');
+let btnLogin= document.getElementById('logging');
 // declarando divs para ocultar
 const firstTab = document.getElementById('first-tab');
 const secondTab = document.getElementById('second-tab');
@@ -43,11 +43,11 @@ const search = document.getElementById('my-search');
 const desc = document.getElementById('desc');
 const asc = document.getElementById('asc');
 // funcion para loguear
-btnLogging = (event) => {
-  if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
-  } else {
+btnLogin = (event) => {
+  if (form.password.value !== 'CONTRASEÑA' && form.user.value !== 'USUARIO') {
     event.preventDefault();
     alert("Por favor ingrese el nombre de usuario y la contraseña correcta.");
+    return false;
   };
 };
 // funcion para ocultar tabs
