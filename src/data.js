@@ -15,26 +15,28 @@ window.computeUsersStats = (users, progress, courses) => {
 };
 window.sortUsers = (users, orderBy, orderDireccion) => {
   listUser.setUsers(users);
-
   if (orderBy == 'stats.percent') {
     let res = orderBy.split(".");
-    sortFunction(res[1], orderDireccion, 2);
+    return  sortFunction(res[1], orderDireccion, 2);
   } else if (
     orderBy == 'stats.exercises.percent') {
     let res = orderBy.split(".");
-    sortFunction(res[2], orderDireccion, 3);
+    return  sortFunction(res[2], orderDireccion, 3);
   } else if (
     orderBy == 'stats.reads.percent') {
     let res = orderBy.split(".");
-    sortFunction(res[2], orderDireccion, 4);
+    return sortFunction(res[2], orderDireccion, 4);
   } else if (
     orderBy == 'stats.quizzes.percent') {
     let res = orderBy.split(".");
-    sortFunction(res[2], orderDireccion, 5);
-  } else {
-    sortFunction(orderBy, orderDireccion);
+    return sortFunction(res[2], orderDireccion, 5);
+  } else if (
+    orderBy == 'stats.quizzes.scoreAvg') {
+    let res = orderBy.split(".");
+    return sortFunction(res[2], orderDireccion, 5);
+  } else{
+   return sortFunction(orderBy, orderDireccion,1);
   };
-  console.log(listUser.getNewUsers()[0])
   return listUser.getNewUsers()
 };
 window.filterUsers = (users, search) => {
@@ -45,13 +47,12 @@ window.filterUsers = (users, search) => {
   });
   return list;
 };
-
 window.processCohortData = (options) => {
-  // let courses = listCohort.getCourses()
-  // let userStudents = computeUsersStats(options.cohortData.users,options.cohortData.progress,courses);
-  // userStudents = sortUsers(userStudents,options.orderBy, options.orderDirection);
-  // if (options.search !== '') {
-  //   students = filterUsers(students, options.search);
-  // }
-  return {};
+  const courses = Object.keys (options.cohort.coursesIndex)
+  let newStudents = computeUsersStats(options.cohortData.users,options.cohortData.progress,courses);
+  newStudents = sortUsers(newStudents,options.orderBy, options.orderDirection);
+  if (options.search !== '') {
+    newStudents = filterUsers(newStudents, options.search);
+   }
+  return newStudents;
 };

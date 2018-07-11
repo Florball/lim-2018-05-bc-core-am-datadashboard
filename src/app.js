@@ -1,24 +1,3 @@
-let urlCohort = "../data/cohorts.json";
-let urlUser = "../data/cohorts/lim-2018-03-pre-core-pw/users.json";
-let urlProgress = "../data/cohorts/lim-2018-03-pre-core-pw/progress.json";
-let ServiceApiRequest = (url, callback) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
-  xhr.onload = callback;
-  xhr.send();
-};
-const getCohorts = () => {
-  data1 = JSON.parse(event.target.responseText);
-  return data1;
-};
-const getUsers = () => {
-  data2 = JSON.parse(event.target.responseText);
-  return data2;
-};
-const getProgress = () => {
-  let data3 = JSON.parse(event.target.responseText);
-  return data3;
-};
 window.listCohort = {
   cohorts: {},
   setCohort: (data) => {
@@ -50,15 +29,19 @@ window.listUser = {
   },
 };
 window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
-
-  listUser.getNewUsers().sort((a, b) => {
+  let order = listUser.getNewUsers().sort((a, b) => {
     let nombre1 = '';
     let nombre2 = '';
     if (level == 1) {
       let labelOne = a[OrderBy];
       let labelTwo = b[OrderBy];
-      nombre1 = labelOne.toLowerCase();
-      nombre2 = labelTwo.toLowerCase();
+      if(OrderBy=='name'){
+        nombre1 = labelOne.toLowerCase();
+        nombre2 = labelTwo.toLowerCase();
+      }else {
+        nombre1 = labelOne;
+        nombre2 = labelTwo;
+      }
     };
     if (level == 2) {
       nombre1 = a.stats[OrderBy];
@@ -81,7 +64,7 @@ window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
       nombre1 = a.stats.quizzes[OrderBy];
       nombre2 = b.stats.quizzes[OrderBy];
     };
-    if (OrderDirection == 'asc') {
+    if (OrderDirection == 'asc' || OrderDirection == 'ASC' ) {
       if (nombre1 > nombre2) {
         return 1;
       };
@@ -89,7 +72,7 @@ window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
         return -1;
       };
     };
-    if (OrderDirection == 'desc') {
+    if (OrderDirection == 'desc' || OrderDirection === 'DESC') {
       if (nombre1 < nombre2) {
         return 1;
       };
@@ -98,24 +81,26 @@ window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
       };
     };
   });
-},
-  window.listProgress = {
-    progress: [],
-    setProgres: (progress) => {
-      listProgress.progress = progress;
-    },
-    getNewProgress: () => {
-      return listProgress.progress;
-    },
-    getIntro: (id, courses) => {
-      for (let course in courses) {
-        if (typeof listProgress.progress[id][courses[course]] !== "undefined") {
-          return listProgress.progress[id][courses[course]];
-        };
+  
+  return order
+};
+window.listProgress = {
+  progress: [],
+  setProgres: (progress) => {
+    listProgress.progress = progress;
+  },
+  getNewProgress: () => {
+    return listProgress.progress;
+  },
+  getIntro: (id, courses) => {
+    for (let course in courses) {
+      if (typeof listProgress.progress[id][courses[course]] !== "undefined") {
+        return listProgress.progress[id][courses[course]];
       };
-      return { percent: 0 }
-    },
-  };
+    };
+    return { percent: 0 }
+  },
+};
 let getPart = (intro) => {
   let list = [];
   for (let units in intro) {
