@@ -312,13 +312,15 @@ text-align: center;
   color: #000;
   display: block;
   font-size: 15px;
-  margin-left: 24%;
+  margin-left: 25%;
   text-transform: uppercase;
 }
 .list-student {
   width: 95%;
 }
 .elem-student {
+  border: 2px solid #f0efef;
+  border-radius: 15px;
   display: block;
   font-family: 'Bitter', serif;
   list-style-type: square;
@@ -329,7 +331,7 @@ text-align: center;
   transition: 0.1s;
 }
 .elem-student:hover {
-  background-color: rgb(86, 248, 154);
+  border: 2px solid rgb(86, 248, 154);
 }
 /* estilos para tabla de progreso */
 .li-conteiner{
