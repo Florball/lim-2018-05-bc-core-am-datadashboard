@@ -199,7 +199,6 @@ const filter = (value) => {
 search.addEventListener('keyup', (event) => {
   filter(event.target.value);
 });
-
 // funcion para ordenar asc y desc 
 desc.addEventListener('click', (event) => {
   let orderBy = document.getElementById('orderBy').value;
