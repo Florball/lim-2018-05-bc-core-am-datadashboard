@@ -69,6 +69,49 @@ let createList = (ulId, classLi, element, html) => {
   elementLi.innerHTML = html;
   list.appendChild(elementLi);
 };
+
+let createDivconteiner=(title,classDivConteiner,listaData) =>{
+  const divElemnt = document.createElement('div');
+  const ulElemnt = document.createElement('ul');
+  divElemnt.setAttribute('class',classDivConteiner)
+  divElemnt.innerHTML = title + ' :';
+  for (let item in listaData) {
+    let liElemnt = document.createElement('li');
+    liElemnt.setAttribute('class','li-title');
+    liElemnt.innerHTML = item +' porcentaje :'+ listaData[item]
+    ulElemnt.appendChild(liElemnt);
+  }
+   divElemnt.appendChild(ulElemnt);
+   return divElemnt;
+};
+
+// funcion para crear listas de estudiantes
+let createListUser = (ulId, classLi, element, html) => {
+  const list = document.getElementById(ulId);
+  const elementLi = document.createElement('li');
+  const contenedor = document.createElement('div');
+  const spanName = document.createElement('span');
+  const divpercent = document.createElement('div');
+  /*
+  const ulElemnt = document.createElement('ul');
+  const liElemnt = document.createElement('li');
+  */
+  spanName.innerHTML = html  
+  elementLi.setAttribute('id', element.id);
+  elementLi.setAttribute('class', classLi);  
+  divpercent.setAttribute('class', 'li-conteiner');
+  divpercent.innerHTML = 'total porcentaje :'+ element.stats.percent;
+  const contenLis = document.createElement('div');
+  contenLis.setAttribute('class','conteiner');
+  contenLis.appendChild(createDivconteiner('Execice','li-conteine',element.stats.exercises));
+  contenLis.appendChild(createDivconteiner('Reads','li-conteine',element.stats.reads));
+  contenLis.appendChild(createDivconteiner('quizzes','li-conteine',element.stats.quizzes));
+  contenedor.appendChild(spanName);
+  contenedor.appendChild(divpercent);
+  contenedor.appendChild(contenLis);
+  elementLi.appendChild(contenedor);
+  list.appendChild(elementLi);
+};
 // objeto options
 const options = {
   cohort: [],
@@ -94,9 +137,14 @@ const listOfCohorts = (id) => {
   });
 };
 menuSedes.addEventListener('click', (event) => {
+  ServiceApiRequest(urlProgress, () => {
+    listProgress.setProgres(getProgress());
+  });
+
   listOfCohorts(event.target.id);
 });
 optionPromocion.addEventListener('click', (event) => {
+
   listOfCohorts(event.target.id);
 });
 // funcion para listar estudiantes
@@ -104,11 +152,13 @@ const listOfStudent = (n) => {
   ServiceApiRequest(urlUser, () => {
     hideTabs(sectionList, thirdTab);
     listUser.setUsers(getUsers());
-    listUser.getNewUsers().forEach(student => {
+    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
+   
+    Lis.forEach(student => {
       options.cohortData.users.push(student);
       if (student.signupCohort === n) {
-        if (student.role === 'student') {
-          createList('list-students', 'elem-student', student, student.name);
+        if (student.role == 'student') {
+          createListUser('list-students', 'elem-student', student, student.name);
         };
       };
     });
@@ -118,22 +168,28 @@ ulCohorts.addEventListener('click', (event) => {
   options.cohort.forEach(cohort => {
     if (cohort.id === event.target.id) {
       options.cohort = cohort;
-    };
+    }
   });
   listOfStudent(event.target.id);
-  listOfProgress();
+  //listOfProgress();
 });
 optionEstudiantes.addEventListener('click', (event) => {
+  ServiceApiRequest(urlProgress, () => {
+    listProgress.setProgres(getProgress());
+  });
   listOfStudent(event.target.id);
 });
 // funcion para filtrar usuarios
 const filter = (value) => {
   ServiceApiRequest(urlUser, () => {
-    listUser.setUsers(filterUsers(getUsers(), value));
+    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
+
+    listUser.setUsers(filterUsers(Lis, value));
     ulStudents.innerHTML = '';
+ 
     listUser.getNewUsers().forEach(student => {
       if (student.role === 'student') {
-        createList('list-students', 'elem-student', student, student.name);
+        createListUser('list-students', 'elem-student', student, student.name);
       };
     });
   });
@@ -153,7 +209,7 @@ const listOfProgress = (id) => {
     const elementLi0 = document.createElement('span');
     Lis.forEach(element => {
       if (element.id === id )
-      elementLi0.innerHTML = 'Nombre : ' + element.name
+      elementLi0.innerHTML = 'Nombre : ' + element.name;
       progressDetail.appendChild(elementLi0);
     });
     const elementLi1 = document.createElement('span');
@@ -169,7 +225,7 @@ const listOfProgress = (id) => {
     elementLi4.innerHTML = 'Total Completados: ' + objectUser.exercises.completed;
     progressDetail.appendChild(elementLi4);
     const elementLi5 = document.createElement('li');
-    elementLi5.innerHTML = 'Porcentaje Completados: ' + objectUser.exercises.percent;
+    elementLi5.innerHTML = 'Porcentaje Completados:' + objectUser.exercises.percent;
     progressDetail.appendChild(elementLi5);
     const elementLi6 = document.createElement('span');
     elementLi6.innerHTML = 'Reads: ';
@@ -214,7 +270,7 @@ desc.addEventListener('click', (event) => {
   ulStudents.innerHTML = '';
   user.forEach(student => {
     if (student.role === 'student') {
-      createList('list-students', 'elem-student', student, student.name);
+      createListUser('list-students', 'elem-student', student, student.name);
     };
   });
 });
@@ -225,7 +281,7 @@ asc.addEventListener('click', (event) => {
   ulStudents.innerHTML = '';
   user.forEach(student => {
     if (student.role === 'student') {
-      createList('list-students', 'elem-student', student, student.name);
+      createListUser('list-students', 'elem-student', student, student.name);
     };
   });
 });
