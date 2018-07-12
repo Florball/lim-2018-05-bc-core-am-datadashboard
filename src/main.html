@@ -46,27 +46,26 @@
   <!-- lista de estudiantes,buscador y selector por orden-->
   <div class="list-student hide" id="third-tab">
     <div class="search-margin">
-      <input type="search" placeholder="Buscar estudiante" class="search" id="my-search">
-      <button class="order-abc" id="desc">DESC</button>
-      <button class="order-abc" id="asc">ASC</button>
-      <select name="orderby" class="orderBy" id="orderBy">
+      <input type="search"  placeholder="Buscar estudiante" class="search no-outline" id="my-search">
+      <button class="order-abc no-outline" id="desc">DESC</button>
+      <button class="order-abc no-outline" id="asc">ASC</button>
+      <select name="orderby" class="orderBy no-outline" id="orderBy">
         <option value="">SELECCIONAR POR</option>
-        <option value="name"> Nombre</option>
+        <option value="name">Nombre</option>
         <option value="stats.percent"> Porcentaje General</option>
-        <option value="stats.exercises.percent"> Exercises Porcentaje</option>
-        <option value="stats.reads.percent"> Reads Porcentaje</option>
-        <option value="stats.quizzes.percent"> Quizz Porcentaje</option>
-        <option value="stats.quizzes.scoreAvg"> Quizz Promedio Score</option>
+        <option value="stats.exercises.percent">Porcentaje de Ejercicios </option>
+        <option value="stats.reads.percent">Porcentaje de Reads</option>
+        <option value="stats.quizzes.percent">Porcentaje de Quizz </option>
+        <option value="stats.quizzes.scoreAvg">Promedio Score Quizz</option>
       </select>
     </div>
     <div class="student-progress">
       <div class="style-for-list"></div>
-      <div id="progress-detail" class="progress-detail"></div>
+      <!-- <div id="progress-detail" class="progress-detail"></div> -->
       <ul id="list-students" class="student"></ul>
     </div>
   </div>
   <script src="data.js"></script>
-  <!-- <script src="app.js"></script> -->
   <script src="main.js"></script>
 
 </body>
