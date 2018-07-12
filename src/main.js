@@ -197,68 +197,6 @@ const filter = (value) => {
 search.addEventListener('keyup', (event) => {
   filter(event.target.value);
 });
-// funcion para mostrar progreso en pantalla
-const listOfProgress = (id) => {
-  ServiceApiRequest(urlProgress, () => {
-    listProgress.setProgres(getProgress());
-    options.cohortData.progress= listProgress.getNewProgress();
-    processCohortData(options)
-    progressDetail.innerHTML = '';
-    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
-    objectUser = findUsers(Lis, id);
-    const elementLi0 = document.createElement('span');
-    Lis.forEach(element => {
-      if (element.id === id )
-      elementLi0.innerHTML = 'Nombre : ' + element.name;
-      progressDetail.appendChild(elementLi0);
-    });
-    const elementLi1 = document.createElement('span');
-    elementLi1.innerHTML = '<p>'+'Porcentaje Total : ' + objectUser.percent + '</p>';
-    progressDetail.appendChild(elementLi1);
-    const elementLi2 = document.createElement('span');
-    elementLi2.innerHTML = '<p>' + 'Ejercicios ' + '</p>';
-    progressDetail.appendChild(elementLi2);
-    const elementLi3 = document.createElement('li');
-    elementLi3.innerHTML = 'Total de Ejercicios: ' + objectUser.exercises.total;
-    progressDetail.appendChild(elementLi3);
-    const elementLi4 = document.createElement('li');
-    elementLi4.innerHTML = 'Total Completados: ' + objectUser.exercises.completed;
-    progressDetail.appendChild(elementLi4);
-    const elementLi5 = document.createElement('li');
-    elementLi5.innerHTML = 'Porcentaje Completados:' + objectUser.exercises.percent;
-    progressDetail.appendChild(elementLi5);
-    const elementLi6 = document.createElement('span');
-    elementLi6.innerHTML = 'Reads: ';
-    progressDetail.appendChild(elementLi6);
-    const elementLi7 = document.createElement('li');
-    elementLi7.innerHTML = 'Total de Reads: ' + objectUser.reads.total;
-    progressDetail.appendChild(elementLi7);
-    const elementLi8 = document.createElement('li');
-    elementLi8.innerHTML = 'Total Completados: ' + objectUser.reads.completed;
-    progressDetail.appendChild(elementLi8);
-    const elementLi9 = document.createElement('li');
-    elementLi9.innerHTML = 'Porcentaje Completados: ' + objectUser.reads.percent;
-    progressDetail.appendChild(elementLi9);
-    const elementLi10 = document.createElement('span');
-    elementLi10.innerHTML = 'Quizzes: ';
-    progressDetail.appendChild(elementLi10);
-    const elementLi11 = document.createElement('li');
-    elementLi11.innerHTML = 'Total de Quizzes: ' + objectUser.quizzes.total;
-    progressDetail.appendChild(elementLi11);
-    const elementLi12 = document.createElement('li');
-    elementLi12.innerHTML = 'Total Completados: ' + objectUser.quizzes.completed;
-    progressDetail.appendChild(elementLi12);
-    const elementLi13 = document.createElement('li');
-    elementLi13.innerHTML = 'Porcentaje Completados: ' + objectUser.quizzes.percent;
-    progressDetail.appendChild(elementLi13);
-    const elementLi14 = document.createElement('li');
-    elementLi14.innerHTML = 'Puntaje Total: ' + objectUser.quizzes.scoreSum;
-    progressDetail.appendChild(elementLi14);
-    const elementLi15 = document.createElement('li');
-    elementLi15.innerHTML = 'Promedio de Puntaje: ' + objectUser.quizzes.scoreAvg;
-    progressDetail.appendChild(elementLi15);
-  });
-};
 ulStudents.addEventListener('click', (event) => {
 listOfProgress(event.target.id)
 });

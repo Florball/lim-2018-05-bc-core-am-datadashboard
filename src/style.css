@@ -14,9 +14,9 @@ body {
   margin: auto;
   margin-top: 6%;
   padding: 0px 50px 45px;
-  /* width: 38%; */
   max-width: 340px; /* Ancho del fomulario */
-  /* height: 150%; */
+  height: auto;
+  overflow: hidden;
   z-index: 1;
 }
 img {
@@ -76,7 +76,6 @@ img {
   font-size: 100%; 
   font-weight: bold;
   margin-top: 10%;
-  margin-bottom: 9%;
   padding: 4%;
   transition: .2s;
   text-align: center;
@@ -310,8 +309,6 @@ text-align: center;
   padding-top: 8.7%;
 }
 .student {
-  border: 2px solid rgb(86, 248, 154);
-  border-radius: 17px;
   color: #000;
   display: block;
   font-size: 15px;
@@ -322,7 +319,6 @@ text-align: center;
   width: 95%;
 }
 .elem-student {
-  border-radius: 15px;
   display: block;
   font-family: 'Bitter', serif;
   list-style-type: square;
