@@ -74,11 +74,11 @@ let createDivconteiner=(title,classDivConteiner,listaData) =>{
   const divElemnt = document.createElement('div');
   const ulElemnt = document.createElement('ul');
   divElemnt.setAttribute('class',classDivConteiner)
-  divElemnt.innerHTML = title + ' :';
+  divElemnt.innerHTML = title;
   for (let item in listaData) {
     let liElemnt = document.createElement('li');
     liElemnt.setAttribute('class','li-title');
-    liElemnt.innerHTML = item +' porcentaje :'+ listaData[item]
+    liElemnt.innerHTML = item +" : "+ listaData[item]
     ulElemnt.appendChild(liElemnt);
   }
    divElemnt.appendChild(ulElemnt);
@@ -100,12 +100,12 @@ let createListUser = (ulId, classLi, element, html) => {
   elementLi.setAttribute('id', element.id);
   elementLi.setAttribute('class', classLi);  
   divpercent.setAttribute('class', 'li-conteiner');
-  divpercent.innerHTML = 'total porcentaje :'+ element.stats.percent;
+  divpercent.innerHTML = 'Porcentaje Total :'+ element.stats.percent;
   const contenLis = document.createElement('div');
   contenLis.setAttribute('class','conteiner');
-  contenLis.appendChild(createDivconteiner('Execice','li-conteine',element.stats.exercises));
-  contenLis.appendChild(createDivconteiner('Reads','li-conteine',element.stats.reads));
-  contenLis.appendChild(createDivconteiner('quizzes','li-conteine',element.stats.quizzes));
+  contenLis.appendChild(createDivconteiner('Ejercicios:','li-conteine',element.stats.exercises));
+  contenLis.appendChild(createDivconteiner('Reads:','li-conteine',element.stats.reads));
+  contenLis.appendChild(createDivconteiner('Quizzes:','li-conteine',element.stats.quizzes));
   contenedor.appendChild(spanName);
   contenedor.appendChild(divpercent);
   contenedor.appendChild(contenLis);
@@ -153,7 +153,6 @@ const listOfStudent = (n) => {
     hideTabs(sectionList, thirdTab);
     listUser.setUsers(getUsers());
     let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
-   
     Lis.forEach(student => {
       options.cohortData.users.push(student);
       if (student.signupCohort === n) {
@@ -169,6 +168,9 @@ ulCohorts.addEventListener('click', (event) => {
     if (cohort.id === event.target.id) {
       options.cohort = cohort;
     }
+  });
+  ServiceApiRequest(urlProgress, () => {
+    listProgress.setProgres(getProgress());
   });
   listOfStudent(event.target.id);
   //listOfProgress();
@@ -197,13 +199,11 @@ const filter = (value) => {
 search.addEventListener('keyup', (event) => {
   filter(event.target.value);
 });
-ulStudents.addEventListener('click', (event) => {
-listOfProgress(event.target.id)
-});
 // funcion para ordenar asc y desc 
 desc.addEventListener('click', (event) => {
   let orderBy = document.getElementById('orderBy').value;
   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
+
   sortUsers(user, orderBy, 'desc');
   ulStudents.innerHTML = '';
   user.forEach(student => {

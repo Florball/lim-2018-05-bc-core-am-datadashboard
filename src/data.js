@@ -56,19 +56,18 @@ window.processCohortData = (options) => {
    };
   return newStudents;
 };
+// funcion para setear data cohort
+// objeto de cohort
 window.listCohort = {
-  cohorts: {},
+  cohorts: [],
   setCohort: (data) => {
     listCohort.cohorts = data;
-  },
-  getByid: (id) => {
-
   },
   getNewCohort: () => {
     return listCohort.cohorts;
   },
   getCourses: () => {
-    let courses = {};
+    let courses = [];
     let getIntro = listCohort.cohorts.map(cohort => {
       if (cohort.id == "lim-2018-03-pre-core-pw") {
         courses = Object.keys(cohort.coursesIndex);
@@ -77,6 +76,7 @@ window.listCohort = {
     return courses;
   },
 };
+// objeto de user
 window.listUser = {
   users: [],
   setUsers: (data) => {
@@ -86,6 +86,7 @@ window.listUser = {
     return listUser.users;
   },
 };
+// funcion de ordenado
 window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
   let order = listUser.getNewUsers().sort((a, b) => {
     let nombre1 = '';
@@ -142,6 +143,7 @@ window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
   
   return order
 };
+// objeto listprogress
 window.listProgress = {
   progress: [],
   setProgres: (progress) => {
@@ -175,7 +177,7 @@ let getPart = (intro) => {
   return list;
 };
 window.getExersicesById = (id, courses) => {
-  let totalExercises = 0;
+  let totalExercises = 0; 
   let completedExercises = 0;
   let intro = listProgress.getIntro(id, courses);
   let parts = getPart(intro).map(parts => {
