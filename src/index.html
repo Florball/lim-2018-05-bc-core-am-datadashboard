@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <meta charset="utf-8" />
@@ -15,16 +15,14 @@
   <form class="loggingIn" id="loggingIn" name="form">
     <img src="https://cdn-images-1.medium.com/max/1600/1*3ebT5azEfTrKxANOE3BwyA.jpeg" alt="">
     <label class="user" for="user">Usuario</label>
-    <input id="user" type="text" autocomplete="email" name="user">
+    <input id="user" class="no-outline" type="text" autocomplete="email" name="user" required>
     <label class="password" for="password">Contraseña</label>
-    <input id="password" type="password" name="password" autocomplete="current-password">
-    <a href="main.html" class="logging" id="logging">INICIAR SESIÓN</a>
+    <input id="password" class="no-outline" type="password" name="password" required>
+    <input type="button" value="INICIAR SESIÓN" class="logging no-outline" id="logging">
   </form>
   <ul class="menu-sedes hiden" id="menu-sedes"></ul>
   <ul id="lista-cohorts" class="li-list"></ul>
   <ul id="list-students" class="student"></ul>
-  <div id="progress-detail" class="progress-detail-css"></div>
-
   <script src="main.js"></script>
 </body>
 
