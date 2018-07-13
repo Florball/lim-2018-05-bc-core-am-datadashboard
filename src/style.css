@@ -336,7 +336,7 @@ text-align: center;
   display: block;
   font-size: 15px;
   margin-left: 25%;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .list-student {
   width: 95%;

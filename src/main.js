@@ -43,13 +43,13 @@ const search = document.getElementById('my-search');
 const desc = document.getElementById('desc');
 const asc = document.getElementById('asc');
 // funcion para loguear
-btnLogin = document.addEventListener('click', (event) => {
-  if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
-    window.location='main.html'; 
-  } else {
-    alert('Por favor ingrese el nombre de usuario y la contraseña correcta.')
-  };
-});
+// btnLogin = document.addEventListener('click', (event) => {
+//   if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
+//     window.location='main.html'; 
+//   } else {
+//     alert('Por favor ingrese el nombre de usuario y la contraseña correcta.')
+//   };
+// });
 // funcion para ocultar tabs
 const hideTabs = (tab1, tab2, tab3 = '', tab4 = '') => {
   tab1.classList.replace('show', 'hide');
@@ -92,16 +92,12 @@ let createListUser = (ulId, classLi, element, html) => {
   const contenedor = document.createElement('div');
   const spanName = document.createElement('span');
   const divpercent = document.createElement('div');
-  /*
-  const ulElemnt = document.createElement('ul');
-  const liElemnt = document.createElement('li');
-  */
-  spanName.innerHTML = html  
+  const contenLis = document.createElement('div');
+  spanName.innerHTML = html.toUpperCase()
   elementLi.setAttribute('id', element.id);
   elementLi.setAttribute('class', classLi);  
   divpercent.setAttribute('class', 'li-conteiner');
   divpercent.innerHTML = 'Porcentaje Total :'+ element.stats.percent;
-  const contenLis = document.createElement('div');
   contenLis.setAttribute('class','conteiner');
   contenLis.appendChild(createDivconteiner('Ejercicios:','li-conteine',element.stats.exercises));
   contenLis.appendChild(createDivconteiner('Reads:','li-conteine',element.stats.reads));
@@ -119,8 +115,8 @@ const options = {
     users: [],
     progress: [],
   },
-  orderBy: 'name',
-  orderDirection: 'asc',
+  orderBy: '',
+  orderDirection: '',
   search: ''
 };
 // funcion para listar cohorts
@@ -171,7 +167,9 @@ ulCohorts.addEventListener('click', (event) => {
   });
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
+    options.cohortData.progress= getProgress()
   });
+  // console.log(options)
   listOfStudent(event.target.id);
   //listOfProgress();
 });
@@ -184,11 +182,11 @@ optionEstudiantes.addEventListener('click', (event) => {
 // funcion para filtrar usuarios
 const filter = (value) => {
   ServiceApiRequest(urlUser, () => {
-    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
-
-    listUser.setUsers(filterUsers(Lis, value));
     ulStudents.innerHTML = '';
- 
+    listUser.setUsers(getUsers());
+    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
+    let listFilter = filterUsers(Lis, value)  
+    listUser.setUsers(listFilter);
     listUser.getNewUsers().forEach(student => {
       if (student.role === 'student') {
         createListUser('list-students', 'elem-student', student, student.name);
