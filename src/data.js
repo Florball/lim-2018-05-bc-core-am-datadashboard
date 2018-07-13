@@ -40,11 +40,13 @@ window.sortUsers = (users, orderBy, orderDireccion) => {
   return listUser.getNewUsers();
 };
 window.filterUsers = (users, search) => {
+  
   let list = users.filter((user) => {
     let nombre = user.name.toUpperCase();
     nombre = nombre.indexOf(search.toUpperCase()) + 1;
     return nombre;
   });
+  listUser.setUsers(list)
   return list;
 };
 window.processCohortData = (options) => {
