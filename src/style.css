@@ -328,6 +328,9 @@ text-align: center;
   padding-bottom: 0.6%;
 }
 /* contiene lista de estudiantes y la lista de progreso corresporndiente */
+.list-student {
+  width: 95%;
+}
 .style-for-list {
   padding-top: 8.7%;
 }
@@ -335,21 +338,19 @@ text-align: center;
   color: #000;
   display: block;
   font-size: 15px;
-  margin-left: 25%;
+  margin-left: 26.5%;
   /* text-transform: uppercase; */
-}
-.list-student {
-  width: 95%;
 }
 .elem-student {
   border: 2px solid #f0efef;
   border-radius: 15px;
   display: block;
   font-family: 'Bitter', serif;
+  font-size: 20px;
   list-style-type: square;
   padding-bottom: 1.5%;
   padding-top: 1.5%;
-  padding-left: 5%;
+  padding-left: 15%;
   padding-right: 2%;
   transition: 0.1s;
 }
@@ -363,9 +364,17 @@ text-align: center;
 .li-conteiner{
   margin-left: 183px;
   display: block;
+  font-weight: 600;
+  margin-left: 0%;
+  line-height: 200%;
+}
+ .names{
+  display: block;
+  margin: auto;
+  font-weight: 600;
 }
 .li-title{  
-  margin-left: 81px;
+  margin-left:0%;
   display: block;
 }
 .conteiner{
@@ -384,6 +393,7 @@ text-align: center;
 .no-outline {
   outline: none;
 }
+/* RESPONSIVE MOVILES Y TABLETS */
 @media screen and (min-width:768px) and (max-width:1000px){
   .menu-sedes{
     width:300px;
@@ -515,12 +525,12 @@ text-align: center;
     padding-top: 0.5%;
     padding-bottom: 0.5%;
   }
-  
   #btn-menu:checked ~ .main-menu{
     margin: 0;
   }
-
-  .list-student {
-    display: block;
+  .student {
+    margin: auto;
+    width: 85%;
+    font-size: 12px;
   }
 }
