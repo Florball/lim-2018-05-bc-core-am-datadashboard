@@ -43,13 +43,13 @@ const search = document.getElementById('my-search');
 const desc = document.getElementById('desc');
 const asc = document.getElementById('asc');
 // funcion para loguear
-// btnLogin = document.addEventListener('click', (event) => {
-//   if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
-//     window.location='main.html'; 
-//   } else {
-//     alert('Por favor ingrese el nombre de usuario y la contraseña correcta.')
-//   };
-// });
+btnLogin = document.addEventListener('click', (event) => {
+  if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
+    window.location='main.html'; 
+  } else {
+    alert('Por favor ingrese el nombre de usuario y la contraseña correcta.')
+  };
+});
 // funcion para ocultar tabs
 const hideTabs = (tab1, tab2, tab3 = '', tab4 = '') => {
   tab1.classList.replace('show', 'hide');
