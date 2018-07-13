@@ -91,6 +91,7 @@ let createListUser = (ulId, classLi, element, html) => {
   const elementLi = document.createElement('li');
   const contenedor = document.createElement('div');
   const spanName = document.createElement('span');
+  spanName.setAttribute("class","names")
   const divpercent = document.createElement('div');
   const contenLis = document.createElement('div');
   spanName.innerHTML = html.toUpperCase()
@@ -99,9 +100,9 @@ let createListUser = (ulId, classLi, element, html) => {
   divpercent.setAttribute('class', 'li-conteiner');
   divpercent.innerHTML = 'Porcentaje Total :'+ element.stats.percent;
   contenLis.setAttribute('class','conteiner');
-  contenLis.appendChild(createDivconteiner('Ejercicios:','li-conteine',element.stats.exercises));
-  contenLis.appendChild(createDivconteiner('Reads:','li-conteine',element.stats.reads));
-  contenLis.appendChild(createDivconteiner('Quizzes:','li-conteine',element.stats.quizzes));
+  contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>','li-conteine',element.stats.exercises));
+  contenLis.appendChild(createDivconteiner('<b>Reads:','li-conteine',element.stats.reads));
+  contenLis.appendChild(createDivconteiner('<b>Quizzes:','li-conteine',element.stats.quizzes));
   contenedor.appendChild(spanName);
   contenedor.appendChild(divpercent);
   contenedor.appendChild(contenLis);
