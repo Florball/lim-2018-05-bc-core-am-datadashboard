@@ -218,7 +218,7 @@ text-align: center;
   line-height: 30px;
   padding-top: 3%;
   margin: auto;
-  width: 59%;
+  width: 65%;
   z-index: 2;
 }
 .li-list {
@@ -597,7 +597,7 @@ text-align: center;
     margin-right: 5%;
   }
   .style-for-list {
-    padding-bottom: 13%;
+    padding-bottom: 14%;
   }
   .elem-student {
     font-size: 12px;
