@@ -438,6 +438,9 @@ text-align: center;
   }
 }
 @media screen and (min-width:470px) and (max-width:650px){
+  .btn-label {
+    display:block
+  }
   .menu-sedes {
     width:250px;
   }
@@ -481,6 +484,9 @@ text-align: center;
   }
 }
 @media screen and (max-width:470px){
+  .btn-label {
+    display:block
+  }
   .loggingIn {
     margin-top: 18%;
     padding-left: 8%;
