@@ -3,22 +3,22 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Data Dashboard</title>
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9R__NpeV0GkGFFguIQxWPJeRMRXE9ZU8tmYQSnVKsIjVgQcpb"
     type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <meta name="viewport" content ="width=device-width">
 </head>
 
 <body>
   <form class="loggingIn" id="loggingIn" name="form">
-    <img src="https://cdn-images-1.medium.com/max/1600/1*3ebT5azEfTrKxANOE3BwyA.jpeg" alt="">
+    <img class="laboratoria" src="https://cdn-images-1.medium.com/max/1600/1*3ebT5azEfTrKxANOE3BwyA.jpeg" alt="">
     <label class="user" for="user">Usuario</label>
     <input id="user" class="no-outline" type="text" autocomplete="email" name="user" required>
     <label class="password" for="password">Contraseña</label>
     <input id="password" class="no-outline" type="password" name="password" required>
-    <input type="button" value="INICIAR SESIÓN" class="logging no-outline" id="logging">
+    <a href="main.html" class="logging no-outline" id="logging">INICIAR SESIÓN</a>
   </form>
   <ul class="menu-sedes hiden" id="menu-sedes"></ul>
   <ul id="lista-cohorts" class="li-list"></ul>

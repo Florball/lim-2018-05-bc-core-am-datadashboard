@@ -14,13 +14,13 @@ body {
   margin: auto;
   margin-top: 6%;
   padding: 0px 50px 45px;
-  max-width: 340px; /* Ancho del fomulario */
   height: auto;
   overflow: hidden;
   z-index: 1;
+  width: 22%;
 }
-img {
-  width: 90%;
+.laboratoria {
+  width: 100%;
   margin: auto; /* centra la imagen */
   display: block; /* quita el display en linea */
 }
@@ -43,6 +43,7 @@ img {
   display: block;
   font-size: 19px; 
   line-height: 145%;
+  margin-bottom: 40px;
   text-align: start;
   padding: 12px 0 14px;
   position: relative;
@@ -51,7 +52,7 @@ img {
 }
 #user {
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: 6%;
   letter-spacing: 2px;
 }
 #password {
@@ -76,6 +77,7 @@ img {
   font-size: 100%; 
   font-weight: bold;
   margin-top: 10%;
+  margin-bottom:9%;
   padding: 4%;
   transition: .2s;
   text-align: center;
@@ -118,7 +120,7 @@ text-align: center;
 }
 .place:hover {
   background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255) ;
+  color: rgb(255, 255, 255);
 }
 
 /* SEGUNDA PAGINA */
@@ -127,38 +129,35 @@ text-align: center;
   padding-top: 0px;
   width: 100%;
 }
-.icon-menu-icon:before {
+.icon-menu-icon {
+  position: initial;
+}
+.icon-menu-icon::before {
   color: #f0efef;
   background-color: #ffe521;
-  font-size: 32px;
-  padding-top: 9px;
+  font-size: 20px;
+  padding-top: 7px;
   padding-right: 4px;
   padding-left: 4px;
 }
-
-#btn-menu{
-  display: none
+#btn-menu {
+  display: none;
 }
-.btn-label{
+.btn-label {
   display:none;
-  width: 30px;
-  height: 30px;
-  padding: 15px;
-  padding-top: 20px;
-  border-right: 1px solid #fffc3df6
-}
-.btn-label:hover{
- cursor: pointer;
+  padding: 10px;
+  padding-top: 15px;
 }
 .logo {
-  margin-left: 4.5%;
   margin-top: 10%;
   padding: 1%;
+  width: 95%;
   height: auto;
 }
 .user-ale {
   cursor: pointer;
   width: 40%;
+  margin-left: 28%;
 }
 .user-alejandra {
   cursor: pointer;
@@ -202,7 +201,7 @@ text-align: center;
   border-radius: 13px 13px 0px 0px;
 }
 #option3 {
-  margin-top: 0.3px;
+  margin-top: 1px;
 }
 #option5 {
   border-radius: 0px 0px 13px 13px;
@@ -236,6 +235,7 @@ text-align: center;
   padding-left: 3%;
   padding-right: 3%;
   transition: 0.1s;
+  width: 59%;
 }
 .elem-cohort:hover {
   background-color: rgb(86, 248, 154);
@@ -361,23 +361,23 @@ text-align: center;
   border: 2px solid rgb(86, 248, 154);
 }
 /* estilos para tabla de progreso */
-.li-conteiner{
+.li-conteiner {
   margin-left: 183px;
   display: block;
   font-weight: 600;
   margin-left: 0%;
   line-height: 200%;
 }
- .names{
+ .names {
   display: block;
   margin: auto;
   font-weight: 600;
 }
-.li-title{  
+.li-title {  
   margin-left:0%;
   display: block;
 }
-.conteiner{
+.conteiner {
   display: flex;
 }
 
@@ -395,10 +395,10 @@ text-align: center;
 }
 /* RESPONSIVE MOVILES Y TABLETS */
 @media screen and (min-width:768px) and (max-width:1000px){
-  .menu-sedes{
+  .menu-sedes {
     width:300px;
   }
-  .main-menu{
+  .main-menu {
     width: 26%;
   }
   .menu-butom {  
@@ -406,13 +406,13 @@ text-align: center;
   } 
 }
 @media screen and (min-width:650px) and (max-width:768px){
-  .menu-sedes{
+  .menu-sedes {
     width:280px;
   }
-  .btn-label{
+  .btn-label {
     display:block
   }
-  .main-menu{
+  .main-menu {
     position: absolute;
     width: 26%;
     margin-left: -26%;
@@ -427,27 +427,24 @@ text-align: center;
     margin-right: 13%;
     transition: 0.1s;
   }
-  .li-list{
+  .li-list {
     width: 600px;
   }
-  #btn-menu:checked ~ .main-menu{
+  #btn-menu:checked ~ .main-menu {
     margin: 0;
   }
-  #btn-menu:checked ~ .list-cohorts{
+  #btn-menu:checked ~ .list-cohorts {
     margin-right:10px;
   }
 }
 @media screen and (min-width:470px) and (max-width:650px){
-  .menu-sedes{
+  .menu-sedes {
     width:250px;
   }
-  .place{
+  .place {
     font-size: 120%;
   }
-  .btn-label{
-    display:block
-  }
-  .main-menu{
+  .main-menu {
     position: absolute;
     width: 30%;
     margin-left: -30%;
@@ -458,7 +455,7 @@ text-align: center;
     font-size: 16px;
     line-height: 45px;
   } 
-  .list-cohorts{
+  .list-cohorts {
     font-size: 16px;
     margin-right: 15%;
   }
@@ -472,35 +469,78 @@ text-align: center;
     padding-right: 3%;
   }
   
-  #btn-menu:checked ~ .main-menu{
+  #btn-menu:checked ~ .main-menu {
     margin: 0;
   }
-  #btn-menu:checked ~ .list-cohorts{
-    margin-right:5px;
-    font-size: 13px
+  #btn-menu:checked ~ .list-cohorts {
+    margin-right: 3%;
+    font-size: 13px;
   }
-  #btn-menu:checked ~ .li-list{
+  #btn-menu:checked ~ .li-list {
     width:200;
   }
 }
 @media screen and (max-width:470px){
-  .welcome{
-    font-size: 160%;
+  .loggingIn {
+    margin-top: 18%;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-bottom: 7%;
+    width: 60%
+  }
+  .laboratoria {
+    margin: auto;
+    width: 105%;
+  }
+  .user, .password {
+    font-size: 15px;
+  }
+  #user, #password {
+  font-size: 12px;
+  margin-bottom: 8%;
+  }
+  .logging {
+    font-size: 13px;
+    margin-top: 0;
+    width: 60%;
+  }
+  .welcome {
+    font-size: 130%;
     margin-top: 15%;
   }
-  .option-sede{
+  .logo {
+    margin-left: 0;
+    width: 100%;
+  }
+  .user-alejandra {
+    font-size: 60%;
+  }
+  .user-ale {
+    margin-left: 27%;
+  }
+  #option3, #option4 {
+  margin-bottom: 1%;
+}
+  .option-sede {
     margin-top: 4%;
   }
-  .menu-sedes{
+  .menu-sedes {
     width:200px;
   }
-  .place{
+  .place {
     font-size: 120%;
   }
-  .btn-label{
-    display:block
+  .btn-label {
+    display: block;
+    float: right;
+    margin-right: 5%;
+    margin-top: 5%;
   }
-  .main-menu{
+  #btn-menu:checked ~ .list-cohorts {
+    margin-right: -330px;
+    margin-top: 10%;
+  }
+  .main-menu {
     width: 40%;
     margin-left: -40%;
     height: 200%;
@@ -519,18 +559,57 @@ text-align: center;
   .li-list{
     width: 100%;
     padding-left: 0%;
-    padding-right: 0%
+    padding-right: 0%;
+    width: 100%;
   }
   .elem-cohort {
+    font-size: 12px;
     padding-top: 0.5%;
     padding-bottom: 0.5%;
+    width: 77%;
   }
-  #btn-menu:checked ~ .main-menu{
+  #btn-menu:checked ~ .main-menu {
     margin: 0;
   }
-  .student {
-    margin: auto;
-    width: 85%;
+  .search-margin {
+    margin-left: 1%;
+    width: 100%;
+    padding-bottom: 5%;
+  }
+  .search {
     font-size: 12px;
+    margin-top: 5%;
+    width: 40%;
+  }
+  .orderBy {
+    font-size: 8px;
+    margin-top: 5%;
+    margin-right: 0;
+    width: 28%;
+  }
+  .order-abc {
+    font-size: 7px;
+    margin-top: 5%;
+    margin-right: 0;
+    width: 9%;
+  }
+  #desc {
+    margin-right: 5%;
+  }
+  .style-for-list {
+    padding-bottom: 13%;
+  }
+  .elem-student {
+    font-size: 12px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 95%;
+  }
+  .student {
+    padding-left: 0;
+    margin: auto;
+    width: 90%;
   }
 }

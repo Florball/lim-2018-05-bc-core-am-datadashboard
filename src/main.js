@@ -21,8 +21,6 @@ const getProgress = () => {
   let data3 = JSON.parse(event.target.responseText);
   return data3;
 };
-// declarando variables 
-let btnLogin= document.getElementById('logging');
 // declarando divs para ocultar
 const firstTab = document.getElementById('first-tab');
 const secondTab = document.getElementById('second-tab');
@@ -42,14 +40,6 @@ const search = document.getElementById('my-search');
 // declarando variables de ordenado
 const desc = document.getElementById('desc');
 const asc = document.getElementById('asc');
-// funcion para loguear
-btnLogin = document.addEventListener('click', (event) => {
-  if (document.form.password.value === 'CONTRASEÑA' && document.form.user.value === 'USUARIO') {
-    window.location='main.html'; 
-  } else {
-    alert('Por favor ingrese el nombre de usuario y la contraseña correcta.')
-  };
-});
 // funcion para ocultar tabs
 const hideTabs = (tab1, tab2, tab3 = '', tab4 = '') => {
   tab1.classList.replace('show', 'hide');
@@ -100,8 +90,8 @@ let createListUser = (ulId, classLi, element, html) => {
   divpercent.setAttribute('class', 'li-conteiner');
   divpercent.innerHTML = 'Porcentaje Total :'+ element.stats.percent;
   contenLis.setAttribute('class','conteiner');
-  contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>','li-conteine',element.stats.exercises));
   contenLis.appendChild(createDivconteiner('<b>Reads:','li-conteine',element.stats.reads));
+  contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>','li-conteine',element.stats.exercises));
   contenLis.appendChild(createDivconteiner('<b>Quizzes:','li-conteine',element.stats.quizzes));
   contenedor.appendChild(spanName);
   contenedor.appendChild(divpercent);
@@ -137,11 +127,9 @@ menuSedes.addEventListener('click', (event) => {
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
   });
-
   listOfCohorts(event.target.id);
 });
 optionPromocion.addEventListener('click', (event) => {
-
   listOfCohorts(event.target.id);
 });
 // funcion para listar estudiantes
@@ -170,7 +158,6 @@ ulCohorts.addEventListener('click', (event) => {
     listProgress.setProgres(getProgress());
     options.cohortData.progress= getProgress()
   });
-  // console.log(options)
   listOfStudent(event.target.id);
   //listOfProgress();
 });
