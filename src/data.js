@@ -17,11 +17,11 @@ window.sortUsers = (users, orderBy, orderDireccion) => {
   listUser.setUsers(users);
   if (orderBy == 'stats.percent') {
     let res = orderBy.split(".");
-    return  sortFunction(res[1], orderDireccion, 2);
+    return sortFunction(res[1], orderDireccion, 2);
   } else if (
     orderBy == 'stats.exercises.percent') {
     let res = orderBy.split(".");
-    return  sortFunction(res[2], orderDireccion, 3);
+    return sortFunction(res[2], orderDireccion, 3);
   } else if (
     orderBy == 'stats.reads.percent') {
     let res = orderBy.split(".");
@@ -34,13 +34,13 @@ window.sortUsers = (users, orderBy, orderDireccion) => {
     orderBy == 'stats.quizzes.scoreAvg') {
     let res = orderBy.split(".");
     return sortFunction(res[2], orderDireccion, 5);
-  } else{
-   return sortFunction(orderBy, orderDireccion,1);
+  } else {
+    return sortFunction(orderBy, orderDireccion, 1);
   };
   return listUser.getNewUsers();
 };
 window.filterUsers = (users, search) => {
-  
+
   let list = users.filter((user) => {
     let nombre = user.name.toUpperCase();
     nombre = nombre.indexOf(search.toUpperCase()) + 1;
@@ -50,15 +50,14 @@ window.filterUsers = (users, search) => {
   return list;
 };
 window.processCohortData = (options) => {
-  const courses = Object.keys (options.cohort.coursesIndex);
-  let newStudents = computeUsersStats(options.cohortData.users,options.cohortData.progress,courses);
-  newStudents = sortUsers(newStudents,options.orderBy, options.orderDirection);
+  const courses = Object.keys(options.cohort.coursesIndex);
+  let newStudents = computeUsersStats(options.cohortData.users, options.cohortData.progress, courses);
+  newStudents = sortUsers(newStudents, options.orderBy, options.orderDirection);
   if (options.search !== '') {
     newStudents = filterUsers(newStudents, options.search);
-   };
+  };
   return newStudents;
 };
-// funcion para setear data cohort
 // objeto de cohort
 window.listCohort = {
   cohorts: [],
@@ -88,63 +87,6 @@ window.listUser = {
     return listUser.users;
   },
 };
-// funcion de ordenado
-window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
-  let order = listUser.getNewUsers().sort((a, b) => {
-    let nombre1 = '';
-    let nombre2 = '';
-    if (level == 1) {
-      let labelOne = a[OrderBy];
-      let labelTwo = b[OrderBy];
-      if(OrderBy=='name'){
-        nombre1 = labelOne.toLowerCase();
-        nombre2 = labelTwo.toLowerCase();
-      }else {
-        nombre1 = labelOne;
-        nombre2 = labelTwo;
-      }
-    };
-    if (level == 2) {
-      nombre1 = a.stats[OrderBy];
-      nombre2 = b.stats[OrderBy];
-    };
-    if (level == 3) {
-      nombre1 = a.stats.exercises;
-      if (a["stats"]["exercises"]) {
-        nombre1 = a["stats"]["exercises"][OrderBy];
-      };
-      if (b["stats"]["exercises"]) {
-        nombre2 = b['stats']['exercises'][OrderBy];
-      };
-    };
-    if (level == 4) {
-      nombre1 = a.stats.reads[OrderBy];
-      nombre2 = b.stats.reads[OrderBy];
-    };
-    if (level == 5) {
-      nombre1 = a.stats.quizzes[OrderBy];
-      nombre2 = b.stats.quizzes[OrderBy];
-    };
-    if (OrderDirection == 'asc' || OrderDirection == 'ASC' ) {
-      if (nombre1 > nombre2) {
-        return 1;
-      };
-      if (nombre1 < nombre2) {
-        return -1;
-      };
-    };
-    if (OrderDirection == 'desc' || OrderDirection === 'DESC') {
-      if (nombre1 < nombre2) {
-        return 1;
-      };
-      if (nombre1 > nombre2) {
-        return -1;
-      };
-    };
-  });
-  
-  return order
-};
 // objeto listprogress
 window.listProgress = {
   progress: [],
@@ -163,6 +105,7 @@ window.listProgress = {
     return { percent: 0 }
   },
 };
+// funcion para  obtener las partes del intro
 let getPart = (intro) => {
   let list = [];
   for (let units in intro) {
@@ -178,8 +121,9 @@ let getPart = (intro) => {
   };
   return list;
 };
+// funcion para obtener el progreso de ejercicios
 window.getExersicesById = (id, courses) => {
-  let totalExercises = 0; 
+  let totalExercises = 0;
   let completedExercises = 0;
   let intro = listProgress.getIntro(id, courses);
   let parts = getPart(intro).map(parts => {
@@ -203,13 +147,7 @@ window.getExersicesById = (id, courses) => {
   exercises.percent = Math.round(division(completedExercises, totalExercises) * 100);
   return exercises;
 };
-let division = (numerador, denominador) => {
-  let total = 0;
-  if (numerador !== 0 && denominador !== 0) {
-    total = numerador / denominador;
-  };
-  return total;
-};
+// funcion para obtener progreso de reads
 window.getReadsById = (id, courses) => {
   let totalReads = 0;
   let completedReads = 0;
@@ -230,6 +168,7 @@ window.getReadsById = (id, courses) => {
   reads.percent = Math.round(division(completedReads, totalReads) * 100);
   return reads;
 };
+// funcion para obtener progreso de quizzes
 window.getQuizzesById = (id, courses) => {
   let totalQuizzes = 0;
   let completedQuizzes = 0;
@@ -256,14 +195,68 @@ window.getQuizzesById = (id, courses) => {
   quizzes.scoreAvg = Math.round(division(scoreSumQuizzes, completedQuizzes));
   return quizzes;
 };
-window.findUsers = (listusers, id) => {
-  let list = listusers.find((user) => {
-    return user.id == id;
-  });
-  if (list.stats !== {}) {
-    if (list.stats !== "undefined") {
-      return list.stats;
-    };
+// funcion para dividir  y obtener procentaje
+let division = (numerador, denominador) => {
+  let total = 0;
+  if (numerador !== 0 && denominador !== 0) {
+    total = numerador / denominador;
   };
-  return {};
+  return total;
+};
+// funcion de ordenado
+window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
+  let order = listUser.getNewUsers().sort((a, b) => {
+    let nombre1 = '';
+    let nombre2 = '';
+    if (level == 1) {
+      let labelOne = a[OrderBy];
+      let labelTwo = b[OrderBy];
+      if (OrderBy == 'name') {
+        nombre1 = labelOne.toLowerCase();
+        nombre2 = labelTwo.toLowerCase();
+      } else {
+        nombre1 = labelOne;
+        nombre2 = labelTwo;
+      }
+    };
+    if (level == 2) {
+      nombre1 = a.stats[OrderBy];
+      nombre2 = b.stats[OrderBy];
+    };
+    if (level == 3) {
+      nombre1 = a.stats.exercises;
+      if (a["stats"]["exercises"]) {
+        nombre1 = a["stats"]["exercises"][OrderBy];
+      };
+      if (b["stats"]["exercises"]) {
+        nombre2 = b['stats']['exercises'][OrderBy];
+      };
+    };
+    if (level == 4) {
+      nombre1 = a.stats.reads[OrderBy];
+      nombre2 = b.stats.reads[OrderBy];
+    };
+    if (level == 5) {
+      nombre1 = a.stats.quizzes[OrderBy];
+      nombre2 = b.stats.quizzes[OrderBy];
+    };
+    if (OrderDirection == 'asc' || OrderDirection == 'ASC') {
+      if (nombre1 > nombre2) {
+        return 1;
+      };
+      if (nombre1 < nombre2) {
+        return -1;
+      };
+    };
+    if (OrderDirection == 'desc' || OrderDirection === 'DESC') {
+      if (nombre1 < nombre2) {
+        return 1;
+      };
+      if (nombre1 > nombre2) {
+        return -1;
+      };
+    };
+  });
+
+  return order
 };
