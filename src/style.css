@@ -504,11 +504,15 @@ text-align: center;
   #user, #password {
   font-size: 12px;
   margin-bottom: 8%;
+  padding: 0;
+  }
+  #user {
+    margin-bottom: 3%;
   }
   .logging {
-    font-size: 13px;
+    font-size: 11px;
     margin-top: 0;
-    width: 60%;
+    width: 50%;
   }
   .welcome {
     font-size: 130%;
