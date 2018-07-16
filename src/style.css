@@ -500,10 +500,11 @@ text-align: center;
   }
   .user, .password {
     font-size: 15px;
+    margin-bottom: 1%;
   }
   #user, #password {
-  font-size: 12px;
-  margin-bottom: 8%;
+  font-size: 13px;
+  margin-bottom: 9%;
   padding: 0;
   }
   #user {
@@ -512,7 +513,7 @@ text-align: center;
   .logging {
     font-size: 11px;
     margin-top: 0;
-    width: 50%;
+    width: 47.5%;
   }
   .welcome {
     font-size: 130%;
