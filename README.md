@@ -52,7 +52,7 @@ Según la información recaudada se realizó una primera vista de logueo para el
 
 ### Funcionalidad:
 
-Se obtuvo la data de archivos json en javascript a partir de ello se podra manipular la data y mostrar lo solicitado por el usuario. 
+Se obtuvo la data de archivos json en javascript, a partir de ello se podrá manipular la data y mostrar lo solicitado por el usuario. 
 
 ## Sprint 2
 
@@ -97,8 +97,8 @@ En este sprint se logro obtener la data y mostrar la lista de cohorts y estudian
 
 ### Funcionalidad:
 
-Para el ultimo demo se logro mostrar la data de progreso en pantalla , se mosifico la vista de esta infomacion, para facilitar la lectura de los resultados a laa usuaria.
-Asi tambien se le dio propiedades de responsive para varios tamaños de pantalla por lo que se ppoodra acceder a la pagia desde cualquier dispositivo.
+Para el último demo se logro mostrar la data de progreso en pantalla , se modifico la vista de esta información, para facilitar la lectura de los resultados a la usuaria.
+Asi tambien se le dio propiedades de responsive para varios tamaños de pantalla por lo que se podrá acceder a la pagina desde cualquier dispositivo.
 
 ## Instrucciones de acceso
 
@@ -107,7 +107,7 @@ de algun software externo.
 Para acceder a la página se debera ingresar uno de los siguientes enlaces [Laboratoria](https://florball.github.io/lim-2018-05-bc-core-am-datadashboard/src) o [Laboratoria](https://daliaes.github.io/lim-2018-05-bc-core-am-datadashboard/src), en la página aparecerá 
 un logging, en ella se debe acceder con el usuario: USUARIO y contraseña:CONTRASEÑA.
 
-La pagina de logueo lo llevara a una vista de un menu de sedes para que el usuario elija la que quiere revisar. Al elegir la sede de su interes dandole click en el nombre, esta acción lo llevara a una tercera vista que mostrara la lista de cohorts pertenecientes al menu seleccionado 
+La página de logueo lo llevará a una vista de un menú de sedes para que el usuario elija la que quiere revisar. Al elegir la sede de su interés dandole click en el nombre, esta acción lo llevará a una tercera vista que mostrara la lista de cohorts pertenecientes al menú seleccionado 
 después de eso contamos con una tercera vista en la que se divisan los cohorts y se cuenta con un menú lateral para el acceso al usuario a otros enlaces.
 
 Finalmente, para lograr el objetivo principal de este proyecto creamos esta página web pensando en  que esta permita a las Training Managers de Laboratoria visualizar el progreso de cada una de las estudiantes de forma fácil y rápida, logrando así agilizar los tiempos a la hora de revisar los datos posibles respecto al desempeño de las estudiantes para apoyarlas en su aprendizaje.
