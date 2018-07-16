@@ -1,3 +1,14 @@
+// objeto options
+const options = {
+  cohort: [],
+  cohortData: {
+    users: [],
+    progress: [],
+  },
+  orderBy: '',
+  orderDirection: '',
+  search: ''
+};
 // objeto para llamar al json
 let urlCohort = '../data/cohorts.json';
 let urlUser = '../data/cohorts/lim-2018-03-pre-core-pw/users.json';
@@ -59,56 +70,44 @@ let createList = (ulId, classLi, element, html) => {
   elementLi.innerHTML = html;
   list.appendChild(elementLi);
 };
-
-let createDivconteiner=(title,classDivConteiner,listaData) =>{
+// funcion para crear divs que contengan la data de progreso
+let createDivconteiner = (title, classDivConteiner, listaData) => {
   const divElemnt = document.createElement('div');
   const ulElemnt = document.createElement('ul');
-  divElemnt.setAttribute('class',classDivConteiner)
+  divElemnt.setAttribute('class', classDivConteiner)
   divElemnt.innerHTML = title;
   for (let item in listaData) {
     let liElemnt = document.createElement('li');
-    liElemnt.setAttribute('class','li-title');
-    liElemnt.innerHTML = item +" : "+ listaData[item]
+    liElemnt.setAttribute('class', 'li-title');
+    liElemnt.innerHTML = item + " : " + listaData[item]
     ulElemnt.appendChild(liElemnt);
   }
-   divElemnt.appendChild(ulElemnt);
-   return divElemnt;
+  divElemnt.appendChild(ulElemnt);
+  return divElemnt;
 };
-
 // funcion para crear listas de estudiantes
 let createListUser = (ulId, classLi, element, html) => {
   const list = document.getElementById(ulId);
   const elementLi = document.createElement('li');
   const contenedor = document.createElement('div');
   const spanName = document.createElement('span');
-  spanName.setAttribute("class","names")
+  spanName.setAttribute("class", "names")
   const divpercent = document.createElement('div');
   const contenLis = document.createElement('div');
   spanName.innerHTML = html.toUpperCase()
   elementLi.setAttribute('id', element.id);
-  elementLi.setAttribute('class', classLi);  
+  elementLi.setAttribute('class', classLi);
   divpercent.setAttribute('class', 'li-conteiner');
-  divpercent.innerHTML = 'Porcentaje Total :'+ element.stats.percent;
-  contenLis.setAttribute('class','conteiner');
-  contenLis.appendChild(createDivconteiner('<b>Reads:','li-conteine',element.stats.reads));
-  contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>','li-conteine',element.stats.exercises));
-  contenLis.appendChild(createDivconteiner('<b>Quizzes:','li-conteine',element.stats.quizzes));
+  divpercent.innerHTML = 'Porcentaje Total :' + element.stats.percent;
+  contenLis.setAttribute('class', 'conteiner');
+  contenLis.appendChild(createDivconteiner('<b>Reads:', 'li-conteine', element.stats.reads));
+  contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>', 'li-conteine', element.stats.exercises));
+  contenLis.appendChild(createDivconteiner('<b>Quizzes:', 'li-conteine', element.stats.quizzes));
   contenedor.appendChild(spanName);
   contenedor.appendChild(divpercent);
   contenedor.appendChild(contenLis);
   elementLi.appendChild(contenedor);
   list.appendChild(elementLi);
-};
-// objeto options
-const options = {
-  cohort: [],
-  cohortData: {
-    users: [],
-    progress: [],
-  },
-  orderBy: '',
-  orderDirection: '',
-  search: ''
 };
 // funcion para listar cohorts
 const listOfCohorts = (id) => {
@@ -123,6 +122,7 @@ const listOfCohorts = (id) => {
     });
   });
 };
+// agregando evento de click para pintar los cohorts por sedes
 menuSedes.addEventListener('click', (event) => {
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
@@ -148,6 +148,7 @@ const listOfStudent = (n) => {
     });
   });
 };
+// agrgando evento de click a los cohorts para pintar a estudiantes
 ulCohorts.addEventListener('click', (event) => {
   options.cohort.forEach(cohort => {
     if (cohort.id === event.target.id) {
@@ -156,10 +157,9 @@ ulCohorts.addEventListener('click', (event) => {
   });
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
-    options.cohortData.progress= getProgress()
+    options.cohortData.progress = getProgress()
   });
   listOfStudent(event.target.id);
-  //listOfProgress();
 });
 optionEstudiantes.addEventListener('click', (event) => {
   ServiceApiRequest(urlProgress, () => {
@@ -173,7 +173,7 @@ const filter = (value) => {
     ulStudents.innerHTML = '';
     listUser.setUsers(getUsers());
     let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
-    let listFilter = filterUsers(Lis, value)  
+    let listFilter = filterUsers(Lis, value)
     listUser.setUsers(listFilter);
     listUser.getNewUsers().forEach(student => {
       if (student.role === 'student') {
@@ -182,14 +182,14 @@ const filter = (value) => {
     });
   });
 };
+//  funcion de evento keyup para filtrar
 search.addEventListener('keyup', (event) => {
   filter(event.target.value);
 });
-// funcion para ordenar asc y desc 
+// funciones para ordenar asc y desc 
 desc.addEventListener('click', (event) => {
   let orderBy = document.getElementById('orderBy').value;
   let user = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
-
   sortUsers(user, orderBy, 'desc');
   ulStudents.innerHTML = '';
   user.forEach(student => {
